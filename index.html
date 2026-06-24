@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cryptid Moon | Official Site</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:    #09070f;
+      --bg2:   #0e0b1a;
+      --acc:   #b060ff;
+      --acc2:  #ff50b0;
+      --acc3:  #38d4f0;
+      --acc4:  #50e8a0;
+      --text:  #f0e8ff;
+      --muted: #9080b0;
+      --bdr:   rgba(176, 96, 255, 0.25);
+      --bdr2:  rgba(56, 212, 240, 0.22);
+      --card:  rgba(255, 255, 255, 0.035);
+      --nav-h: 64px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ════════════ STARS ════════════ */
+    .stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+    .star { position: absolute; border-radius: 50%; background: #fff; animation: twinkle var(--d,4s) ease-in-out infinite alternate; }
+    @keyframes twinkle { from { opacity: var(--lo,.04); } to { opacity: var(--hi,.3); } }
+
+    /* ════════════ NAV ════════════ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: var(--nav-h); z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem;
+      background: rgba(9,7,15,0.8);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(176,96,255,0.2);
+    }
+    .nav-logo {
+      font-size: 1.05rem; font-weight: 800; letter-spacing: 0.12em;
+      background: linear-gradient(135deg, #d0a0ff, #ff80c0);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.88rem; letter-spacing: 0.06em; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--muted); border-radius: 2px; transition: all 0.3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .nav-mobile { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: rgba(9,7,15,0.97); border-bottom: 1px solid var(--bdr); padding: 1.5rem 2rem; flex-direction: column; gap: 1.2rem; z-index: 99; }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a { color: var(--text); text-decoration: none; font-size: 1rem; letter-spacing: 0.08em; }
+
+    /* ════════════ FLOAT DECO & SPARKLES ════════════ */
+    .float-layer { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 1; }
+    .fd { position: absolute; left: var(--x); top: var(--y); font-size: var(--sz,1rem); opacity: var(--op,.22); animation: fdFloat var(--dur,6s) ease-in-out infinite; animation-delay: var(--dl,0s); }
+    @keyframes fdFloat {
+      0%,100% { transform: translateY(0) rotate(var(--r0,0deg)) scale(1); opacity: var(--op,.22); }
+      50%      { transform: translateY(var(--ty,-18px)) rotate(var(--r1,8deg)) scale(1.1); opacity: calc(var(--op,.22) * 1.6); }
+    }
+    .sparkles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 1; }
+    .sp { position: absolute; left: var(--x); top: var(--y); width: var(--sz,6px); height: var(--sz,6px); animation: spAnim var(--dur,3s) ease-in-out infinite; animation-delay: var(--dl,0s); }
+    .sp::before,.sp::after { content: ''; position: absolute; background: var(--c,#b060ff); border-radius: 1px; }
+    .sp::before { width: 100%; height: 2px; top: calc(50% - 1px); left: 0; }
+    .sp::after  { height: 100%; width: 2px; left: calc(50% - 1px); top: 0; }
+    @keyframes spAnim { 0%,100%{opacity:0;transform:scale(0) rotate(0deg);} 40%,60%{opacity:1;transform:scale(1) rotate(45deg);} }
+
+    /* ════════════ HERO ════════════ */
+    #home {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+      padding: calc(var(--nav-h) + 2rem) 1.5rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    #home::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 120% 70% at 50% -10%, rgba(160,60,255,0.28) 0%, transparent 60%),
+        radial-gradient(ellipse 70% 50%  at 85% 95%, rgba(220,40,120,0.15) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40%  at  5% 80%, rgba(80,80,255,0.10) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem; letter-spacing: 0.3em; color: var(--acc); text-transform: uppercase;
+      margin-bottom: 1rem; position: relative; z-index: 2;
+      opacity: 0; animation: fadeUp 0.8s ease 0.3s forwards;
+    }
+    /* ── ヒーロータイトルロゴ（Cryptid Moon） ── */
+    .hero-title-wrap {
+      position: relative; z-index: 2;
+      margin-bottom: 0.7rem;
+      opacity: 0; animation: fadeUp 0.9s ease 0.5s forwards;
+    }
+    .htl-img {
+      display: block;
+      max-width: min(580px, 88vw);
+      max-height: 190px;
+      object-fit: contain;
+      margin: 0 auto;
+      filter: drop-shadow(0 0 40px rgba(176,96,255,0.55));
+    }
+    .htl-img.stl-hidden              { display: none !important; }
+    .htl-img.stl-hidden + .htl-fallback { display: block; }
+    .htl-fallback { display: none; }
+
+    .hero-title {
+      font-size: clamp(3.2rem, 11vw, 7rem); font-weight: 900; line-height: 1.0;
+      letter-spacing: -0.01em;
+      background: linear-gradient(160deg, #ffffff 0%, #e0b0ff 30%, #ff80c0 65%, #ffb060 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      filter: drop-shadow(0 0 40px rgba(176,96,255,0.55));
+    }
+    .hero-subtitle {
+      font-size: clamp(0.75rem, 2vw, 0.92rem); letter-spacing: 0.15em; color: var(--muted);
+      margin-bottom: 2rem; position: relative; z-index: 2;
+      opacity: 0; animation: fadeUp 0.8s ease 0.65s forwards;
+    }
+    .hero-subtitle span { color: var(--acc2); }
+
+    .hero-concept-wrap {
+      width: 100%; max-width: 800px; aspect-ratio: 16/6;
+      border-radius: 20px; overflow: hidden;
+      border: 1px solid rgba(176,96,255,0.35);
+      box-shadow: 0 0 0 1px rgba(176,96,255,0.1), 0 0 60px rgba(176,96,255,0.2), 0 12px 40px rgba(0,0,0,0.5);
+      margin-bottom: 2.2rem; position: relative; z-index: 2;
+      opacity: 0; animation: fadeUp 0.9s ease 0.8s forwards;
+    }
+    .hero-concept-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .hero-badges {
+      display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center;
+      margin-bottom: 2.8rem; position: relative; z-index: 2;
+      opacity: 0; animation: fadeUp 0.9s ease 1.0s forwards;
+    }
+    .badge { padding: 0.35rem 1rem; border-radius: 999px; font-size: 0.8rem; letter-spacing: 0.06em; border: 1px solid; }
+    .badge-purple { border-color: var(--acc);  color: var(--acc);  background: rgba(176,96,255,0.1); }
+    .badge-pink   { border-color: var(--acc2); color: var(--acc2); background: rgba(255,80,176,0.1); }
+    .badge-cyan   { border-color: var(--acc3); color: var(--acc3); background: rgba(56,212,240,0.1); }
+
+    .hero-scroll { opacity: 0; animation: fadeUp 0.9s ease 1.15s forwards; position: relative; z-index: 2; }
+    .scroll-hint { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: var(--muted); font-size: 0.75rem; letter-spacing: 0.1em; }
+    .scroll-arrow { width: 20px; height: 20px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(45deg); animation: bounce 2s ease-in-out infinite; }
+    @keyframes bounce { 0%,100%{transform:rotate(45deg) translateY(0);}50%{transform:rotate(45deg) translateY(6px);} }
+
+    /* ════════════ SECTION 共通 ════════════ */
+    .section { padding: 6rem 1.5rem; position: relative; }
+    .section-inner { max-width: 1020px; margin: 0 auto; }
+    .section-head { margin-bottom: 3rem; }
+
+    .section-label {
+      font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase;
+      margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .section-label::before,.section-label::after { content: ''; flex: none; width: 20px; height: 1px; background: currentColor; opacity: 0.5; }
+
+    /* ── H2をロゴ画像 or テキストで切り替え ── */
+    .section-title-logo { margin-bottom: 0.8rem; }
+    .stl-img {
+      display: block;
+      max-height: 110px;
+      max-width: 100%;
+      object-fit: contain;
+    }
+    .stl-img.stl-hidden          { display: none !important; }
+    .stl-img.stl-hidden + .stl-fallback { display: block; }
+    .stl-fallback { display: none; } /* 画像がある場合は非表示 */
+
+    /* テキストフォールバック共通スタイル */
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900; letter-spacing: 0.04em; line-height: 1.1;
+    }
+
+    .section-divider { width: 56px; height: 3px; border-radius: 3px; }
+
+    .reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.75s ease, transform 0.75s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+
+    .char-icon-img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block; }
+
+    /* ════════════ LIVER ════════════ */
+    #liver { background-color: var(--bg2); overflow: hidden; }
+    #liver::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 80% at 0% 50%, rgba(160,60,255,0.1) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    #liver .section-label { color: var(--acc); }
+    #liver .section-divider { background: linear-gradient(90deg, var(--acc), var(--acc2)); }
+
+    /* ロゴ画像（朧月凌タイトル） */
+    #liver .stl-img {
+      max-height: 110px;
+      filter: drop-shadow(0 0 20px rgba(176,96,255,0.5));
+    }
+    /* テキストフォールバック */
+    #liver .stl-fallback {
+      background: linear-gradient(135deg, #f0d0ff, #ff90d0);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      filter: drop-shadow(0 0 20px rgba(176,96,255,0.4));
+    }
+
+    /* 立ち絵 + 情報 レイアウト */
+    .liver-showcase { display: grid; grid-template-columns: 300px 1fr; gap: 3.5rem; align-items: end; }
+
+    .liver-art-container { position: relative; }
+    .liver-art-wrap {
+      width: 100%; min-height: 440px;
+      border-radius: 20px 20px 0 0; overflow: hidden; position: relative;
+      background: linear-gradient(180deg, #1a0e2e 0%, #0e0820 100%);
+      border: 1px solid rgba(176,96,255,0.35); border-bottom: none;
+      box-shadow: 0 0 0 1px rgba(176,96,255,0.08), 0 0 50px rgba(176,96,255,0.2);
+    }
+    .liver-art-wrap::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 35%;
+      background: linear-gradient(transparent, var(--bg2) 90%);
+      pointer-events: none; z-index: 1;
+    }
+    .liver-art-img { width: 100%; height: 100%; object-fit: contain; object-position: bottom; display: block; }
+
+    .liver-nameplate {
+      background: linear-gradient(90deg, rgba(176,96,255,0.15), rgba(255,80,176,0.1));
+      border: 1px solid rgba(176,96,255,0.3); border-top: none;
+      border-radius: 0 0 20px 20px; padding: 1rem 1.4rem; text-align: center;
+    }
+    .liver-nameplate .np-name { font-size: 1.3rem; font-weight: 800; letter-spacing: 0.08em; background: linear-gradient(135deg, #e0b0ff, #ff90d0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .liver-nameplate .np-tag  { font-size: 0.72rem; color: var(--acc); letter-spacing: 0.1em; margin-top: 0.2rem; }
+
+    .liver-info { padding-bottom: 0.5rem; }
+    .liver-big-name {
+      font-size: clamp(2.8rem, 6vw, 4.5rem); font-weight: 900; line-height: 1.0; letter-spacing: 0.04em;
+      background: linear-gradient(160deg, #ffffff 0%, #e0b0ff 40%, #ff80c0 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      filter: drop-shadow(0 0 20px rgba(176,96,255,0.4));
+      margin-bottom: 0.5rem;
+    }
+    .liver-tagline { font-size: 1rem; color: var(--acc); letter-spacing: 0.1em; margin-bottom: 2rem; }
+
+    .info-blocks { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.8rem; }
+    .info-block { background: var(--card); border: 1px solid var(--bdr); border-radius: 14px; padding: 1.1rem 1.4rem; }
+    .info-block h3 { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--acc); margin-bottom: 0.55rem; }
+    .info-block p  { font-size: 0.93rem; color: var(--muted); line-height: 1.8; }
+
+    .tag-list { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.4rem; }
+    .tag { padding: 0.25rem 0.7rem; border-radius: 999px; font-size: 0.75rem; border: 1px solid var(--bdr); color: var(--muted); background: rgba(255,255,255,0.03); }
+
+    .sns-list { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .sns-btn {
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+      padding: 0.7rem 1.4rem; border-radius: 12px;
+      border: 1px solid rgba(176,96,255,0.35); background: rgba(176,96,255,0.09);
+      color: var(--text); text-decoration: none; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.04em;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .sns-btn:hover { background: rgba(176,96,255,0.22); border-color: rgba(176,96,255,0.7); box-shadow: 0 0 20px rgba(176,96,255,0.3); transform: translateY(-2px); }
+
+    /* ════════════ YURUMA ════════════ */
+    #yuruma { background-color: var(--bg); overflow: hidden; }
+    #yuruma::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 10% 40%, rgba(56,212,240,0.07) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 50% at 90% 70%, rgba(80,232,160,0.06) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    #yuruma .section-label { color: var(--acc3); }
+    #yuruma .section-divider { background: linear-gradient(90deg, var(--acc3), var(--acc4)); }
+
+    /* ロゴ画像（ゆるまタイトル） */
+    #yuruma .stl-img {
+      max-height: 150px;
+      filter: drop-shadow(0 0 24px rgba(56,212,240,0.5));
+    }
+    /* テキストフォールバック */
+    #yuruma .stl-fallback {
+      background: linear-gradient(135deg, #80f0ff, #50e8a0);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      filter: drop-shadow(0 0 20px rgba(56,212,240,0.35));
+    }
+
+    /* コンセプトアートのみ */
+    .yuruma-visual { margin-bottom: 3rem; }
+    .yuruma-concept-wrap {
+      width: 100%; aspect-ratio: 16/6; border-radius: 20px; overflow: hidden;
+      border: 1px solid rgba(56,212,240,0.3);
+      box-shadow: 0 0 0 1px rgba(56,212,240,0.08), 0 0 50px rgba(56,212,240,0.15), 0 10px 40px rgba(0,0,0,0.45);
+    }
+    .yuruma-concept-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .yuruma-lore {
+      background: rgba(56,212,240,0.04); border: 1px solid var(--bdr2);
+      border-radius: 20px; padding: 2.2rem 2.6rem; margin-bottom: 3rem; text-align: center;
+    }
+    .lore-catch {
+      font-size: clamp(1.05rem, 2.8vw, 1.35rem); font-weight: 700; line-height: 1.6;
+      background: linear-gradient(135deg, #80f0ff, #50e8a0);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 0.9rem;
+    }
+    .yuruma-lore p:not(.lore-catch) { color: var(--muted); line-height: 1.85; font-size: 0.93rem; }
+
+    .chara-label {
+      font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--acc3);
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .chara-label::before,.chara-label::after { content: ''; flex: none; width: 20px; height: 1px; background: var(--acc3); opacity: 0.5; }
+
+    .chara-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+
+    .chara-card {
+      background: rgba(56,212,240,0.03); border: 1px solid var(--bdr2);
+      border-radius: 22px; padding: 2rem 1.6rem; text-align: center;
+      transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+      display: flex; flex-direction: column; align-items: center; position: relative; overflow: hidden;
+    }
+    .chara-card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(56,212,240,0.07) 0%, transparent 60%); pointer-events: none; transition: opacity 0.3s; opacity: 0; }
+    .chara-card:hover::before { opacity: 1; }
+    .chara-card:hover { border-color: rgba(56,212,240,0.5); box-shadow: 0 0 35px rgba(56,212,240,0.15); transform: translateY(-6px); }
+
+    .chara-card.tsuchinoko::before { background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(128,192,64,0.10) 0%, transparent 60%); }
+    .chara-card.chupacabra::before { background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(192,96,255,0.10) 0%, transparent 60%); }
+    .chara-card.jackalope::before  { background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(255,200,64,0.10) 0%, transparent 60%); }
+    .chara-card.tsuchinoko:hover { border-color: rgba(128,192,64,0.5);  box-shadow: 0 0 35px rgba(128,192,64,0.15); }
+    .chara-card.chupacabra:hover { border-color: rgba(192,96,255,0.5);  box-shadow: 0 0 35px rgba(192,96,255,0.15); }
+    .chara-card.jackalope:hover  { border-color: rgba(255,200,64,0.5);  box-shadow: 0 0 35px rgba(255,200,64,0.15); }
+
+    .chara-icon { width: 110px; height: 110px; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 1.3rem; flex-shrink: 0; padding: 3px; background: linear-gradient(135deg, var(--acc3), var(--acc4)); box-shadow: 0 0 24px rgba(56,212,240,0.3); }
+    .chara-icon-inner { width: 100%; height: 100%; border-radius: 50%; overflow: hidden; background: #0a1818; display: flex; align-items: center; justify-content: center; }
+
+    .chara-card.tsuchinoko .chara-icon { background: linear-gradient(135deg, #80c040, #c0e060); box-shadow: 0 0 24px rgba(128,192,64,0.35); }
+    .chara-card.tsuchinoko .chara-icon-inner { background: #0c1808; }
+    .chara-card.chupacabra .chara-icon { background: linear-gradient(135deg, #8040c0, #c060ff); box-shadow: 0 0 24px rgba(160,64,255,0.35); }
+    .chara-card.chupacabra .chara-icon-inner { background: #110820; }
+    .chara-card.jackalope  .chara-icon { background: linear-gradient(135deg, #c07820, #ffc050); box-shadow: 0 0 24px rgba(220,160,64,0.35); }
+    .chara-card.jackalope  .chara-icon-inner { background: #18120a; }
+
+    .chara-name { font-size: 1.45rem; font-weight: 800; letter-spacing: 0.06em; margin-bottom: 0.3rem; background: linear-gradient(135deg, #80f0ff, #50e8a0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .chara-card.tsuchinoko .chara-name { background: linear-gradient(135deg, #a8e850, #e0ff80); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .chara-card.chupacabra .chara-name { background: linear-gradient(135deg, #c880ff, #ff88cc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .chara-card.jackalope  .chara-name { background: linear-gradient(135deg, #ffc840, #ffee88); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+    .chara-species { font-size: 0.72rem; color: var(--acc3); letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .chara-card.tsuchinoko .chara-species { color: #80c040; }
+    .chara-card.chupacabra .chara-species { color: #c080ff; }
+    .chara-card.jackalope  .chara-species { color: #e0a030; }
+
+    .chara-divider { width: 36px; height: 2px; border-radius: 2px; margin: 0 auto 1rem; background: linear-gradient(90deg, var(--acc3), var(--acc4)); }
+    .chara-card.tsuchinoko .chara-divider { background: linear-gradient(90deg, #80c040, #c0e060); }
+    .chara-card.chupacabra .chara-divider { background: linear-gradient(90deg, #8040c0, #c060ff); }
+    .chara-card.jackalope  .chara-divider { background: linear-gradient(90deg, #c07820, #ffc050); }
+
+    .chara-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.78; margin-bottom: 1.1rem; text-align: left; width: 100%; }
+
+    .chara-catchphrase { font-size: 0.83rem; font-style: italic; font-weight: 600; border-left: 2px solid var(--acc3); color: var(--acc3); background: rgba(56,212,240,0.07); padding: 0.5rem 0.8rem; border-radius: 0 10px 10px 0; margin-bottom: 1.2rem; text-align: left; width: 100%; }
+    .chara-card.tsuchinoko .chara-catchphrase { color: #80c040; border-color: #80c040; background: rgba(128,192,64,0.08); }
+    .chara-card.chupacabra .chara-catchphrase { color: #c080ff; border-color: #c080ff; background: rgba(192,128,255,0.08); }
+    .chara-card.jackalope  .chara-catchphrase { color: #e0a030; border-color: #e0a030; background: rgba(224,160,48,0.08); }
+
+    .chara-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center; }
+    .chara-tag { padding: 0.25rem 0.65rem; border-radius: 999px; font-size: 0.72rem; border: 1px solid var(--bdr2); color: var(--acc3); background: rgba(56,212,240,0.07); }
+    .chara-card.tsuchinoko .chara-tag { border-color: rgba(128,192,64,0.3);  color: #80c040;  background: rgba(128,192,64,0.08); }
+    .chara-card.chupacabra .chara-tag { border-color: rgba(192,128,255,0.3); color: #c080ff; background: rgba(192,128,255,0.08); }
+    .chara-card.jackalope  .chara-tag { border-color: rgba(224,160,48,0.3);  color: #e0a030;  background: rgba(224,160,48,0.08); }
+
+    /* ════════════ FOOTER ════════════ */
+    footer { background: #050307; border-top: 1px solid rgba(176,96,255,0.12); padding: 2.5rem 1.5rem; text-align: center; }
+    .footer-logo { font-size: 1.1rem; font-weight: 800; letter-spacing: 0.15em; background: linear-gradient(135deg, #d0a0ff, #ff80c0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.4rem; }
+    .footer-sub  { font-size: 0.75rem; color: rgba(144,128,176,0.35); letter-spacing: 0.08em; margin-bottom: 0.4rem; }
+    footer p     { font-size: 0.72rem; color: rgba(144,128,176,0.35); letter-spacing: 0.06em; }
+
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+    /* ════════════ RESPONSIVE ════════════ */
+    @media (max-width: 820px) {
+      .liver-showcase { grid-template-columns: 1fr; gap: 2rem; }
+      .liver-art-container { max-width: 280px; margin: 0 auto; }
+      .liver-info { text-align: center; }
+      .sns-list { justify-content: center; }
+      .tag-list { justify-content: center; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .chara-grid { grid-template-columns: 1fr; }
+      .yuruma-lore { padding: 1.6rem 1.2rem; }
+      .hero-concept-wrap { aspect-ratio: 16/9; }
+      .yuruma-concept-wrap { aspect-ratio: 16/9; }
+    }
+    @media (max-width: 480px) { .section { padding: 4rem 1rem; } }
+  </style>
+</head>
+<body>
+
+  <div class="stars" id="stars"></div>
+
+  <!-- ══ NAV ══ -->
+  <nav>
+    <a href="#home" class="nav-logo">Cryptid Moon</a>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#liver">朧月凌</a></li>
+      <li><a href="#yuruma">ゆるま</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="nav-mobile" id="navMobile">
+    <a href="#home"   onclick="closeMenu()">Home</a>
+    <a href="#liver"  onclick="closeMenu()">朧月凌</a>
+    <a href="#yuruma" onclick="closeMenu()">ゆるま</a>
+  </div>
+
+  <!-- ══ HERO ══ -->
+  <section id="home">
+    <div class="float-layer" aria-hidden="true">
+      <span class="fd" style="--x:8%;  --y:22%; --sz:1.4rem; --dur:6s;  --dl:0s;   --op:.2;  --ty:-20px; --r0:-5deg; --r1: 8deg">🦇</span>
+      <span class="fd" style="--x:88%; --y:18%; --sz:1.0rem; --dur:8s;  --dl:1.2s; --op:.18; --ty:-15px; --r0: 5deg; --r1:-8deg">🦇</span>
+      <span class="fd" style="--x:78%; --y:72%; --sz:0.9rem; --dur:7s;  --dl:2s;   --op:.15; --ty:-12px; --r0: 0deg; --r1:10deg">🦇</span>
+      <span class="fd" style="--x:18%; --y:68%; --sz:1.1rem; --dur:9s;  --dl:0.5s; --op:.22; --ty:-18px; --r0:-8deg; --r1: 5deg">✦</span>
+      <span class="fd" style="--x:55%; --y:12%; --sz:0.9rem; --dur:7s;  --dl:3s;   --op:.18; --ty:-14px; --r0: 0deg; --r1:15deg">✦</span>
+      <span class="fd" style="--x:92%; --y:55%; --sz:0.75rem;--dur:6s;  --dl:1.5s; --op:.15; --ty:-10px; --r0:10deg; --r1:-5deg">★</span>
+      <span class="fd" style="--x:3%;  --y:48%; --sz:0.8rem; --dur:10s; --dl:2.5s; --op:.12; --ty:-16px; --r0:-3deg; --r1: 8deg">★</span>
+      <span class="fd" style="--x:46%; --y:82%; --sz:1.2rem; --dur:8s;  --dl:4s;   --op:.15; --ty:-20px; --r0: 0deg; --r1: 5deg">🌙</span>
+    </div>
+    <div class="sparkles" aria-hidden="true">
+      <div class="sp" style="--x:15%;--y:35%;--sz:8px;--dur:3.5s;--dl:0.2s;--c:#b060ff"></div>
+      <div class="sp" style="--x:75%;--y:28%;--sz:6px;--dur:4s;  --dl:1s;  --c:#ff50b0"></div>
+      <div class="sp" style="--x:40%;--y:75%;--sz:7px;--dur:3s;  --dl:2s;  --c:#b060ff"></div>
+      <div class="sp" style="--x:85%;--y:60%;--sz:5px;--dur:5s;  --dl:0.5s;--c:#ff50b0"></div>
+      <div class="sp" style="--x:25%;--y:55%;--sz:6px;--dur:4.5s;--dl:3s;  --c:#ffd040"></div>
+      <div class="sp" style="--x:62%;--y:88%;--sz:7px;--dur:3.8s;--dl:1.5s;--c:#38d4f0"></div>
+    </div>
+
+    <p class="hero-eyebrow">朧月凌 × ゆるま &nbsp;|&nbsp; Official Site</p>
+    <!--
+      ▼ サイトタイトルロゴ
+        images/title-logo.png を置くと文字の代わりに表示されます
+        （横長・背景透過PNG推奨）
+    -->
+    <div class="hero-title-wrap">
+      <img class="htl-img" src="images/title-logo.png" alt="Cryptid Moon"
+           onerror="this.classList.add('stl-hidden')" />
+      <h1 class="hero-title htl-fallback">Cryptid Moon</h1>
+    </div>
+    <p class="hero-subtitle">
+      オカルト大好きヴァンパイアVライバー &nbsp;<span>×</span>&nbsp; ゆるふわUMAシリーズ
+    </p>
+
+    <!-- images/hero-concept.png を置くと反映（横長推奨） -->
+    <div class="hero-concept-wrap">
+      <img class="hero-concept-img" src="images/hero-concept.png" alt="コンセプトアート"
+           onerror="placeholderConcept(this,'hero')" />
+    </div>
+
+    <div class="hero-badges">
+      <span class="badge badge-purple">🦇 ヴァンパイア</span>
+      <span class="badge badge-pink">🔮 オカルト</span>
+      <span class="badge badge-cyan">👾 Vライバー</span>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-hint"><span>SCROLL</span><div class="scroll-arrow"></div></div>
+    </div>
+  </section>
+
+  <!-- ══ LIVER ══ -->
+  <section id="liver" class="section">
+    <div class="section-inner">
+      <div class="section-head reveal">
+        <p class="section-label">Vライバー紹介</p>
+        <!--
+          ▼ 朧月凌セクションのタイトルロゴ
+            images/liver-title.png を置くと文字の代わりに表示されます
+            （横長・背景透過PNG推奨）
+        -->
+        <div class="section-title-logo">
+          <img class="stl-img" src="images/liver-title.png" alt="朧月凌"
+               onerror="this.classList.add('stl-hidden')" />
+          <h2 class="section-title stl-fallback">朧月 凌</h2>
+        </div>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="liver-showcase">
+        <!-- 立ち絵 -->
+        <div class="liver-art-container reveal">
+          <!-- images/liver-art.png を置くと反映（縦長・背景透過PNG推奨） -->
+          <div class="liver-art-wrap">
+            <img class="liver-art-img" src="images/liver-art.png" alt="朧月凌 立ち絵"
+                 onerror="placeholderStand(this)" />
+          </div>
+          <div class="liver-nameplate">
+            <div class="np-name">朧月 凌</div>
+            <div class="np-tag">オカルト大好きヴァンパイア</div>
+          </div>
+        </div>
+
+        <!-- プロフィール -->
+        <div class="liver-info reveal reveal-d1">
+          <div class="liver-big-name">朧月<br>凌</div>
+          <div class="liver-tagline">オカルト大好きヴァンパイア</div>
+          <div class="info-blocks">
+            <div class="info-block">
+              <h3>自己紹介</h3>
+              <p>ライブナウV所属のVライバーです。<br>君の心をキャトミューしちゃうぞ☆</p>
+            </div>
+            <div class="info-block">
+              <h3>好きなもの</h3>
+              <div class="tag-list">
+                <span class="tag">👁️ オカルト</span>
+                <span class="tag">🌙 夜</span>
+                <span class="tag">🩸 ヴァンパイア</span>
+                <span class="tag">🔮 都市伝説</span>
+                <span class="tag">🌑 ホラー</span>
+                <span class="tag">✨ 不思議な話</span>
+              </div>
+            </div>
+            <div class="info-block">
+              <h3>活動情報</h3>
+              <p>雑談中心、たまに歌ったり企画をしたりしています。<br>最新情報はXをチェック！</p>
+            </div>
+          </div>
+          <div class="sns-list">
+            <a class="sns-btn" href="https://x.com/obrzk_0226" target="_blank" rel="noopener noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L2.07 2.25h6.944l4.266 5.638 5.008-5.638ZM17.6 19.79h1.833L7.084 4.126H5.117L17.6 19.79Z"/>
+              </svg>
+              @obrzk_0226
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ YURUMA ══ -->
+  <section id="yuruma" class="section">
+    <div class="section-inner">
+      <div class="section-head reveal">
+        <p class="section-label">Original Work</p>
+        <!--
+          ▼ ゆるまセクションのタイトルロゴ
+            images/yuruma-logo.png を置くと文字の代わりに表示されます
+            （横長・背景透過PNG推奨）
+        -->
+        <div class="section-title-logo">
+          <img class="stl-img" src="images/yuruma-logo.png" alt="ゆるま"
+               onerror="this.classList.add('stl-hidden')" />
+          <h2 class="section-title stl-fallback">ゆるま</h2>
+        </div>
+        <div class="section-divider"></div>
+      </div>
+
+      <!-- コンセプトアート -->
+      <!-- images/yuruma-concept.png を置くと反映（横長推奨） -->
+      <div class="yuruma-visual reveal">
+        <div class="yuruma-concept-wrap">
+          <img class="yuruma-concept-img" src="images/yuruma-concept.png" alt="ゆるまコンセプトアート"
+               onerror="placeholderConcept(this,'yuruma')" />
+        </div>
+      </div>
+
+      <!-- 世界観 -->
+      <div class="yuruma-lore reveal">
+        <p class="lore-catch">地球にやってきたゆるいUMAが、<br>あなたの心にそっと寄り添う。</p>
+        <p>
+          ツチノコ、チュパカブラ、ジャッカロープ——<br>
+          世界各地で目撃され、謎のまま語り継がれてきた未確認生物（UMA）たち。<br>
+          彼らは実は、ゆる〜い顔をしてあなたのすぐそばに漂っているのかもしれない。<br>
+          朧月凌が手がける、ゆるふわUMAキャラクターシリーズ。
+        </p>
+      </div>
+
+      <p class="chara-label reveal">Characters</p>
+
+      <div class="chara-grid">
+        <!-- ツチノコ -->
+        <div class="chara-card tsuchinoko reveal reveal-d1">
+          <!-- images/tsuchinoko-icon.png を置くと反映 -->
+          <div class="chara-icon"><div class="chara-icon-inner">
+            <img class="char-icon-img" src="images/tsuchinoko-icon.png" alt="ツチノコ"
+                 onerror="placeholderIcon(this,'ツチノコ','#80c040')" />
+          </div></div>
+          <div class="chara-name">ツチノコ</div>
+          <div class="chara-species">日本 / 謎の胴長生物</div>
+          <div class="chara-divider"></div>
+          <p class="chara-desc">日本の山野に生息するとされる、ずんぐりもちもちの謎生物。日当たりのいい石の上でひなたぼっこをするのが日課。動くのが面倒なので、ほぼ転がって移動する。</p>
+          <div class="chara-catchphrase">「…もうちょっとだけ、ここにいる」</div>
+          <div class="chara-tags">
+            <span class="chara-tag">🌿 ひなたぼっこ</span>
+            <span class="chara-tag">💤 昼寝</span>
+            <span class="chara-tag">🍙 食いしん坊</span>
+          </div>
+        </div>
+
+        <!-- チュパカブラ -->
+        <div class="chara-card chupacabra reveal reveal-d2">
+          <!-- images/chupacabra-icon.png を置くと反映 -->
+          <div class="chara-icon"><div class="chara-icon-inner">
+            <img class="char-icon-img" src="images/chupacabra-icon.png" alt="チュパカブラ"
+                 onerror="placeholderIcon(this,'チュパカブラ','#c080ff')" />
+          </div></div>
+          <div class="chara-name">チュパカブラ</div>
+          <div class="chara-species">ラテンアメリカ / 謎の吸血生物</div>
+          <div class="chara-divider"></div>
+          <p class="chara-desc">見た目はちょっとこわいが、本当はさみしがりやでビビりな子。仲良くなると離れたがらない。「べつにそばにいたいとかじゃないし」が口癖。</p>
+          <div class="chara-catchphrase">「…べつに、さみしくないし」</div>
+          <div class="chara-tags">
+            <span class="chara-tag">🌙 夜行性</span>
+            <span class="chara-tag">💜 さみしがり</span>
+            <span class="chara-tag">👀 誤解されがち</span>
+          </div>
+        </div>
+
+        <!-- ジャッカロープ -->
+        <div class="chara-card jackalope reveal reveal-d3">
+          <!-- images/jackalope-icon.png を置くと反映 -->
+          <div class="chara-icon"><div class="chara-icon-inner">
+            <img class="char-icon-img" src="images/jackalope-icon.png" alt="ジャッカロープ"
+                 onerror="placeholderIcon(this,'ジャッカロープ','#e0a030')" />
+          </div></div>
+          <div class="chara-name">ジャッカロープ</div>
+          <div class="chara-species">北米 / 角を持つ謎のウサギ</div>
+          <div class="chara-divider"></div>
+          <p class="chara-desc">ウサギにレイヨウのツノが生えた、北米の荒野に伝わる謎の生き物。自分のツノをめちゃくちゃ自慢している女の子。ちょっとお調子者だが、面倒見がよくてみんなのムードメーカー。</p>
+          <div class="chara-catchphrase">「このツノ、かっこいいでしょ？」</div>
+          <div class="chara-tags">
+            <span class="chara-tag">🦌 ツノ自慢</span>
+            <span class="chara-tag">⚡ すばしっこい</span>
+            <span class="chara-tag">😄 お調子者</span>
+            <span class="chara-tag">👧 女の子</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <div class="footer-logo">Cryptid Moon</div>
+    <p class="footer-sub">朧月凌 × ゆるま Official Site</p>
+    <p>© 2026 朧月 凌 / ライブナウV</p>
+  </footer>
+
+  <script>
+    /* ── 星 ── */
+    (function(){
+      const c = document.getElementById('stars');
+      for(let i=0;i<100;i++){
+        const s=document.createElement('div'); s.className='star';
+        const sz=Math.random()*1.8+0.3;
+        s.style.cssText=[`width:${sz}px`,`height:${sz}px`,
+          `left:${Math.random()*100}%`,`top:${Math.random()*100}%`,
+          `--d:${(Math.random()*4+2).toFixed(1)}s`,
+          `--lo:${(Math.random()*0.05).toFixed(2)}`,
+          `--hi:${(Math.random()*0.38+0.08).toFixed(2)}`,
+          `animation-delay:${(Math.random()*6).toFixed(1)}s`].join(';');
+        c.appendChild(s);
+      }
+    })();
+
+    /* ── スクロールフェードイン ── */
+    (function(){
+      const io=new IntersectionObserver(entries=>{
+        entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});
+      },{threshold:0.1});
+      document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+    })();
+
+    /* ── ハンバーガー ── */
+    const btn=document.getElementById('hamburger'), menu=document.getElementById('navMobile');
+    btn.addEventListener('click',()=>{btn.classList.toggle('open');menu.classList.toggle('open');});
+    function closeMenu(){btn.classList.remove('open');menu.classList.remove('open');}
+
+    /* ── プレースホルダー生成（画像未設置時） ──
+       images/ フォルダに正しいファイル名で画像を置いて F5 リロードで切り替わります */
+    function svgToDataURI(svg){
+      return 'data:image/svg+xml;base64,'+btoa(unescape(encodeURIComponent(svg)));
+    }
+
+    function placeholderIcon(img,name,color){
+      img.src=svgToDataURI(`<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+        <rect width="200" height="200" fill="${color}14"/>
+        <circle cx="100" cy="100" r="96" fill="none" stroke="${color}" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.45"/>
+        <circle cx="100" cy="84" r="26" fill="none" stroke="${color}" stroke-width="2" opacity="0.35"/>
+        <path d="M58 138 Q100 108 142 138" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" opacity="0.35"/>
+        <text x="100" y="170" text-anchor="middle" font-size="13" font-family="sans-serif" fill="${color}" opacity="0.65">${name}</text>
+      </svg>`);
+      img.onerror=null;
+    }
+
+    function placeholderStand(img){
+      img.src=svgToDataURI(`<svg xmlns="http://www.w3.org/2000/svg" width="300" height="500" viewBox="0 0 300 500">
+        <rect width="300" height="500" fill="#12082a"/>
+        <rect x="1" y="1" width="298" height="498" fill="none" stroke="rgba(176,96,255,0.3)" stroke-width="1" stroke-dasharray="6 4"/>
+        <ellipse cx="150" cy="120" rx="45" ry="55" fill="none" stroke="rgba(176,96,255,0.35)" stroke-width="1.5"/>
+        <path d="M90 220 Q150 170 210 220 L220 420 Q150 440 80 420 Z" fill="none" stroke="rgba(176,96,255,0.35)" stroke-width="1.5"/>
+        <path d="M90 230 L50 350" stroke="rgba(176,96,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M210 230 L250 350" stroke="rgba(176,96,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M110 420 L100 490" stroke="rgba(176,96,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M190 420 L200 490" stroke="rgba(176,96,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+        <text x="150" y="270" text-anchor="middle" font-size="13" font-family="sans-serif" fill="rgba(176,96,255,0.55)">立ち絵</text>
+        <text x="150" y="292" text-anchor="middle" font-size="10" font-family="sans-serif" fill="rgba(144,128,176,0.4)">images/liver-art.png</text>
+      </svg>`);
+      img.onerror=null;
+    }
+
+    function placeholderConcept(img,type){
+      const isY=type==='yuruma', c1=isY?'56,212,240':'176,96,255';
+      const label=isY?'ゆるまコンセプトアート':'コンセプトアート';
+      const fname=isY?'images/yuruma-concept.png':'images/hero-concept.png';
+      img.src=svgToDataURI(`<svg xmlns="http://www.w3.org/2000/svg" width="800" height="300" viewBox="0 0 800 300">
+        <rect width="800" height="300" fill="#0a0714"/>
+        <rect x="1" y="1" width="798" height="298" fill="none" stroke="rgba(${c1},0.22)" stroke-width="1" stroke-dasharray="8 5"/>
+        <path d="M0 210 Q200 155 400 185 Q600 218 800 162 L800 300 L0 300Z" fill="rgba(${c1},0.07)"/>
+        <path d="M0 258 Q180 228 360 244 Q560 262 800 222 L800 300 L0 300Z" fill="rgba(${c1},0.11)"/>
+        <circle cx="640" cy="88" r="40" fill="rgba(${c1},0.06)" stroke="rgba(${c1},0.15)" stroke-width="1"/>
+        <circle cx="120" cy="58" r="1.5" fill="rgba(255,255,255,0.32)"/>
+        <circle cx="240" cy="40" r="1"   fill="rgba(255,255,255,0.25)"/>
+        <circle cx="400" cy="68" r="1.5" fill="rgba(255,255,255,0.30)"/>
+        <circle cx="530" cy="44" r="1"   fill="rgba(255,255,255,0.25)"/>
+        <circle cx="720" cy="135" r="1.5" fill="rgba(255,255,255,0.32)"/>
+        <rect x="363" y="118" width="74" height="56" rx="9" fill="none" stroke="rgba(${c1},0.4)" stroke-width="1.5"/>
+        <circle cx="400" cy="146" r="17" fill="none" stroke="rgba(${c1},0.4)" stroke-width="1.5"/>
+        <circle cx="400" cy="146" r="8"  fill="rgba(${c1},0.12)"/>
+        <text x="400" y="200" text-anchor="middle" font-size="13" font-family="sans-serif" fill="rgba(${c1},0.6)">${label}</text>
+        <text x="400" y="220" text-anchor="middle" font-size="11" font-family="sans-serif" fill="rgba(144,128,176,0.38)">${fname} を置いてください</text>
+      </svg>`);
+      img.onerror=null;
+    }
+  </script>
+
+</body>
+</html>
