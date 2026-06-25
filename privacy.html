@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>プライバシーポリシー | Cryptid Moon</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:    #09070f;
+      --bg2:   #0e0b1a;
+      --acc:   #b060ff;
+      --acc2:  #ff50b0;
+      --acc3:  #38d4f0;
+      --text:  #f0e8ff;
+      --muted: #9080b0;
+      --bdr:   rgba(176, 96, 255, 0.25);
+      --card:  rgba(255, 255, 255, 0.035);
+      --nav-h: 64px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ════════════ STARS ════════════ */
+    .stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+    .star { position: absolute; border-radius: 50%; background: #fff; animation: twinkle var(--d,4s) ease-in-out infinite alternate; }
+    @keyframes twinkle { from { opacity: var(--lo,.04); } to { opacity: var(--hi,.3); } }
+
+    /* ════════════ NAV ════════════ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: var(--nav-h); z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem;
+      background: rgba(9,7,15,0.8);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(176,96,255,0.2);
+    }
+    .nav-logo {
+      font-size: 1.05rem; font-weight: 800; letter-spacing: 0.12em;
+      background: linear-gradient(135deg, #d0a0ff, #ff80c0);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.88rem; letter-spacing: 0.06em; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ════════════ MAIN ════════════ */
+    .page-wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: calc(var(--nav-h) + 4rem) 1.5rem 6rem;
+      position: relative; z-index: 1;
+    }
+
+    .page-eyebrow {
+      font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--acc); margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .page-eyebrow::before,.page-eyebrow::after { content: ''; flex: none; width: 20px; height: 1px; background: var(--acc); opacity: 0.5; }
+
+    .page-title {
+      font-size: clamp(1.8rem, 5vw, 2.8rem); font-weight: 900; letter-spacing: 0.04em;
+      background: linear-gradient(135deg, #e0b0ff, #ff90d0);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-updated {
+      font-size: 0.78rem; color: var(--muted); letter-spacing: 0.06em; margin-bottom: 3rem;
+    }
+
+    .policy-section { margin-bottom: 2.5rem; }
+
+    .policy-section h2 {
+      font-size: 1rem; font-weight: 700; letter-spacing: 0.08em;
+      color: var(--acc); margin-bottom: 0.9rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(176,96,255,0.2);
+    }
+
+    .policy-section p {
+      font-size: 0.93rem; color: var(--muted); line-height: 1.9;
+      margin-bottom: 0.7rem;
+    }
+
+    .policy-section ul {
+      list-style: none; padding: 0;
+    }
+
+    .policy-section ul li {
+      font-size: 0.93rem; color: var(--muted); line-height: 1.9;
+      padding-left: 1.2rem; position: relative; margin-bottom: 0.3rem;
+    }
+
+    .policy-section ul li::before {
+      content: '▸'; position: absolute; left: 0; color: var(--acc); opacity: 0.7;
+    }
+
+    .policy-section a {
+      color: var(--acc3); text-decoration: none; border-bottom: 1px solid rgba(56,212,240,0.3);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .policy-section a:hover { color: #80f0ff; border-color: rgba(56,212,240,0.7); }
+
+    .policy-card {
+      background: var(--card); border: 1px solid var(--bdr);
+      border-radius: 16px; padding: 1.4rem 1.8rem;
+      margin-top: 1rem;
+    }
+
+    /* ════════════ FOOTER ════════════ */
+    footer { background: #050307; border-top: 1px solid rgba(176,96,255,0.12); padding: 2.5rem 1.5rem; text-align: center; position: relative; z-index: 1; }
+    .footer-logo { font-size: 1.1rem; font-weight: 800; letter-spacing: 0.15em; background: linear-gradient(135deg, #d0a0ff, #ff80c0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.4rem; }
+    .footer-sub  { font-size: 0.75rem; color: rgba(144,128,176,0.35); letter-spacing: 0.08em; margin-bottom: 0.4rem; }
+    .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 0.6rem; }
+    .footer-links a { font-size: 0.72rem; color: rgba(144,128,176,0.5); text-decoration: none; letter-spacing: 0.06em; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--muted); }
+    footer p { font-size: 0.72rem; color: rgba(144,128,176,0.35); letter-spacing: 0.06em; }
+  </style>
+</head>
+<body>
+
+  <div class="stars" id="stars"></div>
+
+  <!-- ══ NAV ══ -->
+  <nav>
+    <a href="index.html" class="nav-logo">Cryptid Moon</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#liver">朧月凌</a></li>
+      <li><a href="index.html#yuruma">ゆるま</a></li>
+    </ul>
+  </nav>
+
+  <!-- ══ MAIN ══ -->
+  <main class="page-wrap">
+    <p class="page-eyebrow">Legal</p>
+    <h1 class="page-title">プライバシーポリシー</h1>
+    <p class="page-updated">最終更新日：2026年6月25日</p>
+
+    <div class="policy-section">
+      <h2>1. はじめに</h2>
+      <p>
+        Cryptid Moon 公式サイト（以下「本サイト」）は、朧月凌／ゆるま（以下「運営者」）が運営しています。
+        本ページでは、本サイトをご利用いただく際の個人情報の取り扱いについてご説明します。
+      </p>
+    </div>
+
+    <div class="policy-section">
+      <h2>2. 収集する情報</h2>
+      <p>本サイトは静的なウェブサイトであり、お客様から直接個人情報を収集することはありません。</p>
+      <p>ただし、以下の情報が自動的に記録される場合があります：</p>
+      <ul>
+        <li>アクセス日時・IPアドレス（ホスティングサービスのアクセスログ）</li>
+        <li>ブラウザの種類・OS などの技術情報</li>
+        <li>参照元URL</li>
+      </ul>
+      <p>これらの情報は個人を特定するものではなく、サイト改善を目的としてのみ使用します。</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>3. 外部サービスへのリンク</h2>
+      <p>本サイトには、X（旧Twitter）など外部サービスへのリンクが含まれています。リンク先のプライバシーポリシーは各サービスに準拠しており、運営者は一切の責任を負いません。</p>
+      <ul>
+        <li><a href="https://twitter.com/ja/privacy" target="_blank" rel="noopener noreferrer">X (Twitter) プライバシーポリシー</a></li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>4. Cookieについて</h2>
+      <p>本サイトは独自のCookieを使用しておりません。ただし、ホスティングプラットフォーム（GitHub Pages 等）が技術的な目的でCookieを使用する場合があります。</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>5. 著作権について</h2>
+      <p>本サイトに掲載されているすべてのコンテンツ（テキスト・画像・イラスト等）の著作権は運営者または正当な権利者に帰属します。無断転載・複製・改変は禁止しています。</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>6. 免責事項</h2>
+      <p>本サイトの情報は可能な限り正確を期しておりますが、内容の正確性・完全性・最新性を保証するものではありません。本サイトの利用により生じた損害について、運営者は一切の責任を負いません。</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>7. プライバシーポリシーの変更</h2>
+      <p>本ポリシーは必要に応じて改定することがあります。変更後のポリシーは本ページに掲載した時点で効力を生じます。</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>8. お問い合わせ</h2>
+      <div class="policy-card">
+        <p>本ポリシーに関するお問い合わせは、X（旧Twitter）のダイレクトメッセージよりお願いします。</p>
+        <p style="margin-top:0.6rem;">
+          X：<a href="https://x.com/obrzk_0226" target="_blank" rel="noopener noreferrer">@obrzk_0226</a>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <div class="footer-logo">Cryptid Moon</div>
+    <p class="footer-sub">朧月凌 × ゆるま Official Site</p>
+    <div class="footer-links">
+      <a href="index.html">ホーム</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+    </div>
+    <p>© 2026 朧月 凌 / ライブナウV</p>
+  </footer>
+
+  <script>
+    (function(){
+      const c = document.getElementById('stars');
+      for(let i=0;i<100;i++){
+        const s=document.createElement('div'); s.className='star';
+        const sz=Math.random()*1.8+0.3;
+        s.style.cssText=[`width:${sz}px`,`height:${sz}px`,
+          `left:${Math.random()*100}%`,`top:${Math.random()*100}%`,
+          `--d:${(Math.random()*4+2).toFixed(1)}s`,
+          `--lo:${(Math.random()*0.05).toFixed(2)}`,
+          `--hi:${(Math.random()*0.38+0.08).toFixed(2)}`,
+          `animation-delay:${(Math.random()*6).toFixed(1)}s`].join(';');
+        c.appendChild(s);
+      }
+    })();
+  </script>
+
+</body>
+</html>
