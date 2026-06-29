@@ -1,0 +1,193 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:   #0f0c1e;
+  --bg2:  #140e28;
+  --bg3:  #0a0816;
+  --acc:  #b898d8;
+  --tsu:  #7a9a5c;
+  --chu:  #8a6aaa;
+  --jac:  #b8902a;
+  --text: #e8dff5;
+  --cream:#f5edd8;
+  --gold: #d4b870;
+  --muted:#8070a8;
+  --card: rgba(255,255,255,0.028);
+  --bdr:  rgba(184,152,216,0.2);
+  --nav-h:64px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: 9997; pointer-events: none;
+  opacity: 0.028; mix-blend-mode: screen;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* ── Stars ── */
+.stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.star  { position: absolute; border-radius: 50%; animation: twinkle var(--d,7s) ease-in-out infinite alternate; }
+@keyframes twinkle {
+  from { opacity: var(--lo,.03); transform: scale(1); }
+  to   { opacity: var(--hi,.22); transform: scale(1.08); }
+}
+
+/* ── Nav ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: var(--nav-h); z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2rem;
+  background: rgba(10,8,22,0.88);
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(184,152,216,0.12);
+  gap: 1rem;
+}
+.nav-logo {
+  font-size: 1rem; font-weight: 800; letter-spacing: 0.12em;
+  background: linear-gradient(135deg, #d0a0ff, #ff80c0);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  text-decoration: none; white-space: nowrap; flex-shrink: 0;
+}
+.nav-chara-links { display: flex; gap: 0.5rem; list-style: none; flex-wrap: wrap; }
+.nav-chara-links a {
+  color: var(--muted); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.05em;
+  transition: color 0.35s; padding: 0.25rem 0.7rem; border-radius: 12px;
+  border: 1px solid transparent;
+}
+.nav-chara-links a:hover { color: var(--gold); }
+.nav-chara-links a.active { color: var(--text); border-color: rgba(212,184,112,0.3); background: rgba(212,184,112,0.06); }
+.nav-home-link { color: var(--muted); text-decoration: none; font-size: 0.78rem; transition: color 0.35s; white-space: nowrap; }
+.nav-home-link:hover { color: var(--gold); }
+
+/* ── Page layout ── */
+.chara-page {
+  padding: calc(var(--nav-h) + 3.5rem) 1.5rem 6rem;
+  max-width: 1020px; margin: 0 auto; position: relative; z-index: 1;
+}
+
+.back-to-top {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  padding: 0.5rem 1.1rem; border-radius: 14px;
+  border: 1px solid rgba(212,184,112,0.28); background: rgba(212,184,112,0.05);
+  color: var(--gold); text-decoration: none; font-size: 0.8rem;
+  transition: all 0.38s; margin-bottom: 2.5rem; letter-spacing: 0.04em;
+}
+.back-to-top:hover { background: rgba(212,184,112,0.1); transform: translateY(-2px); }
+
+/* ── Visual + info grid ── */
+.chara-page-visual {
+  display: grid; grid-template-columns: 320px 1fr; gap: 3.5rem; align-items: start;
+}
+
+/* ── Tarot frame ── */
+.chara-tarot-frame {
+  border-radius: 20px; overflow: hidden; position: relative;
+  border: 1px solid rgba(184,152,216,0.22);
+  box-shadow: 0 0 0 1px rgba(184,152,216,0.05), 0 0 50px rgba(120,65,185,0.1), 0 12px 40px rgba(0,0,0,0.55);
+  background: linear-gradient(180deg, #1a0e2e 0%, #0e0820 100%);
+  aspect-ratio: 3/4;
+}
+.chara-tarot-frame img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+.tarot-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 4.5rem; opacity: 0.28; }
+
+/* Corner marks on tarot */
+.cc-tl,.cc-tr,.cc-bl,.cc-br {
+  position: absolute; width: 14px; height: 14px;
+  border-style: solid; border-color: rgba(212,184,112,0.3);
+  pointer-events: none; z-index: 2;
+}
+.cc-tl { top:8px; left:8px; border-width:1.5px 0 0 1.5px; border-radius:2px 0 0 0; }
+.cc-tr { top:8px; right:8px; border-width:1.5px 1.5px 0 0; border-radius:0 2px 0 0; }
+.cc-bl { bottom:8px; left:8px; border-width:0 0 1.5px 1.5px; border-radius:0 0 0 2px; }
+.cc-br { bottom:8px; right:8px; border-width:0 1.5px 1.5px 0; border-radius:0 0 2px 0; }
+
+/* ── Info panel ── */
+.chara-page-info { padding-top: 0.5rem; }
+
+.chara-number {
+  font-size: 0.66rem; letter-spacing: 0.3em; color: var(--gold);
+  opacity: 0.6; margin-bottom: 0.6rem; text-transform: uppercase;
+}
+.chara-page-name {
+  font-family: 'Kiwi Maru', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+  font-size: clamp(2rem,5vw,3rem); font-weight: 500; letter-spacing: 0.06em;
+  margin-bottom: 0.3rem; line-height: 1.1;
+}
+.chara-page-species { font-size: 0.78rem; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 1.5rem; }
+
+.chara-page-divider { width: 60px; height: 1px; margin-bottom: 1.5rem; opacity: 0.4; }
+
+.chara-page-desc { font-size: 0.95rem; color: var(--muted); line-height: 1.92; margin-bottom: 1.5rem; }
+
+/* ── Traits ── */
+.chara-page-traits { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-bottom: 1.5rem; }
+.trait-block { padding: 0.7rem 1rem; border-radius: 12px; font-size: 0.82rem; line-height: 1.55; }
+.trait-label { display: block; font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.5; margin-bottom: 0.18rem; }
+.trait-strength { background: rgba(122,154,92,0.07); border: 1px solid rgba(122,154,92,0.22); color: #b4d880; }
+.trait-weakness  { background: rgba(192,120,138,0.07); border: 1px solid rgba(192,120,138,0.22); color: #d8a4b0; }
+
+/* ── Catchphrase ── */
+.chara-page-catchphrase {
+  font-size: 1rem; font-style: italic; font-weight: 500;
+  border-radius: 14px; padding: 1rem 1.4rem; margin-bottom: 1.5rem;
+  position: relative; line-height: 1.68;
+}
+.chara-page-catchphrase::before {
+  content: '✦'; position: absolute; top: -9px; left: 14px;
+  font-size: 0.7rem; background: var(--bg); padding: 0 5px;
+}
+
+/* ── Tags ── */
+.chara-page-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2.5rem; }
+.chara-page-tag { padding: 0.28rem 0.8rem; border-radius: 14px; font-size: 0.75rem; border: 1px solid; }
+
+/* ── Other chars nav ── */
+.other-chars-section { padding-top: 2rem; border-top: 1px solid rgba(184,152,216,0.1); }
+.other-chars-label { font-size: 0.65rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); opacity: 0.7; margin-bottom: 1rem; }
+.other-chars { display: flex; gap: 0.9rem; flex-wrap: wrap; }
+.other-char-btn {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0.7rem 1.3rem; border-radius: 18px;
+  border: 1px solid rgba(184,152,216,0.22);
+  background: var(--card); color: var(--text);
+  text-decoration: none; font-size: 0.88rem; font-weight: 500;
+  transition: all 0.4s; letter-spacing: 0.04em;
+}
+.other-char-btn:hover { border-color: rgba(212,184,112,0.35); color: var(--gold); transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+.btn-icon { font-size: 1.1rem; line-height: 1; }
+
+/* ── Footer ── */
+footer {
+  background: var(--bg3); border-top: 1px solid rgba(184,152,216,0.09);
+  padding: 2.5rem 1.5rem 2rem; text-align: center; position: relative; z-index: 1;
+}
+.footer-logo { font-size: 1rem; font-weight: 800; letter-spacing: 0.18em; background: linear-gradient(135deg, #c8a0e8, #e88ab0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.4rem; }
+.footer-sub { font-size: 0.72rem; color: rgba(128,112,168,0.38); letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+.footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 0.7rem; flex-wrap: wrap; }
+.footer-links a { font-size: 0.7rem; color: rgba(128,112,168,0.44); text-decoration: none; transition: color 0.35s; }
+.footer-links a:hover { color: var(--muted); }
+footer > p { font-size: 0.7rem; color: rgba(128,112,168,0.32); letter-spacing: 0.06em; }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .chara-page-visual { grid-template-columns: 1fr; gap: 2rem; }
+  .chara-tarot-frame { max-width: 260px; margin: 0 auto; }
+  nav { padding: 0 1.2rem; }
+}
+@media (max-width: 480px) {
+  .chara-page { padding-left: 1rem; padding-right: 1rem; }
+  .nav-chara-links a { font-size: 0.72rem; padding: 0.2rem 0.5rem; }
+  .chara-page-traits { grid-template-columns: 1fr; }
+}

@@ -3,7 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cryptid Moon | Official Site</title>
+  <title>ゆるま | Cryptid Moon Official Site</title>
+  <meta name="description" content="地球にやってきたゆるいUMAが、あなたの心にそっと寄り添う。ツチノコ・チュパカブラ・ジャッカロープが主役のゆるふわUMAキャラクターシリーズ「ゆるま」公式サイト。" />
+  <meta property="og:title" content="ゆるま | Cryptid Moon Official Site" />
+  <meta property="og:description" content="地球にやってきたゆるいUMAが、あなたの心にそっと寄り添う。ゆるふわUMAキャラクターシリーズ「ゆるま」公式サイト。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="images/yuruma-concept.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ゆるま | Cryptid Moon Official Site" />
+  <meta name="twitter:description" content="地球にやってきたゆるいUMAが、あなたの心にそっと寄り添う。ゆるふわUMAキャラクターシリーズ「ゆるま」公式サイト。" />
+  <meta name="twitter:image" content="images/yuruma-concept.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&display=swap" rel="stylesheet">
@@ -204,6 +213,15 @@
     .sns-btn { display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.7rem 1.5rem; border-radius: 18px; border: 1px solid rgba(184,152,216,0.28); background: rgba(184,152,216,0.07); color: var(--text); text-decoration: none; font-size: 0.88rem; font-weight: 600; letter-spacing: 0.04em; transition: all 0.45s ease; }
     .sns-btn:hover { background: rgba(212,184,112,0.09); border-color: rgba(212,184,112,0.38); box-shadow: 0 0 22px rgba(212,184,112,0.1); transform: translateY(-3px); color: var(--gold); }
 
+    /* ════ ABOUT VISUAL ════ */
+    .about-visual { margin-bottom: 2.5rem; }
+    .about-concept-wrap { width: 100%; aspect-ratio: 16/6; border-radius: 22px; overflow: hidden; border: 1px solid rgba(184,152,216,0.22); box-shadow: 0 0 0 1px rgba(184,152,216,0.07), 0 0 50px rgba(130,70,180,0.1), 0 10px 40px rgba(0,0,0,0.45); }
+    .about-concept-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .about-origin { background: rgba(110,45,165,0.03); border: 1px solid rgba(184,152,216,0.18); border-radius: 22px; padding: 2.2rem 2.6rem; margin-bottom: 3rem; text-align: center; position: relative; }
+    .about-origin::before { content: ''; position: absolute; inset: 6px; border: 1px dashed rgba(184,152,216,0.1); border-radius: 17px; pointer-events: none; }
+    .about-origin-catch { font-family: 'Kiwi Maru', sans-serif; font-size: clamp(1rem,2.5vw,1.2rem); font-weight: 500; line-height: 1.75; background: linear-gradient(135deg, #d4b0f0, #e88ab0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.9rem; }
+    .about-origin p:not(.about-origin-catch) { color: var(--muted); line-height: 1.92; font-size: 0.92rem; }
+
     /* ════ YURUMA ════ */
     #yuruma { background-color: var(--bg); overflow: hidden; }
     #yuruma::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 10% 40%, rgba(112,144,82,0.06) 0%, transparent 55%), radial-gradient(ellipse 50% 45% at 90% 70%, rgba(130,150,96,0.05) 0%, transparent 55%); pointer-events: none; }
@@ -334,10 +352,23 @@
     .chara-card.jackalope  .chara-catchphrase::before { color: var(--jac); background: var(--bg); }
 
     .chara-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center; position: relative; z-index: 1; }
+    .chara-detail-btn { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.48rem 1.1rem; border-radius: 14px; margin-top: 1.1rem; border: 1px solid rgba(212,184,112,0.28); background: rgba(212,184,112,0.05); color: var(--gold); text-decoration: none; font-size: 0.78rem; transition: all 0.38s; letter-spacing: 0.06em; position: relative; z-index: 1; }
+    .chara-detail-btn:hover { background: rgba(212,184,112,0.12); transform: translateY(-2px); box-shadow: 0 4px 14px rgba(212,184,112,0.1); }
     .chara-tag { padding: 0.25rem 0.65rem; border-radius: 12px; font-size: 0.7rem; border: 1px solid rgba(184,152,216,0.18); color: var(--muted); background: rgba(184,152,216,0.05); }
     .chara-card.tsuchinoko .chara-tag { border-color: rgba(122,154,92,0.24);  color: var(--tsu); background: rgba(122,154,92,0.06); }
     .chara-card.chupacabra .chara-tag { border-color: rgba(138,106,170,0.24); color: var(--chu); background: rgba(138,106,170,0.06); }
     .chara-card.jackalope  .chara-tag { border-color: rgba(184,144,42,0.24);  color: var(--jac); background: rgba(184,144,42,0.06); }
+
+    /* ════ CHARACTERS ════ */
+    #characters { background-color: var(--bg); overflow: hidden; }
+    #characters::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 55% 45% at 50% 30%, rgba(184,152,216,0.04) 0%, transparent 55%); pointer-events: none; }
+    #characters .section-label { color: var(--gold); }
+    #characters .section-divider { background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+
+    .yuruma-ornament { text-align: center; margin-bottom: 2.8rem; }
+    .yuruma-ornament-inner { display: inline-flex; align-items: center; gap: 0.85rem; font-size: 1.45rem; opacity: 0.5; letter-spacing: 0.08em; }
+
+    .news-lead { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.1em; margin-top: 0.45rem; font-style: italic; opacity: 0.75; }
 
     /* ════ NEWS ════ */
     #news { background-color: var(--bg2); overflow: hidden; }
@@ -363,6 +394,40 @@
     .news-tag.info     { color: var(--acc4); border-color: rgba(130,150,96,0.28); background: rgba(130,150,96,0.06); }
     .news-text { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
 
+    /* ════ DOWNLOADS ════ */
+    #downloads { background-color: var(--bg); overflow: hidden; }
+    #downloads::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 85% 20%, rgba(212,184,112,0.035) 0%, transparent 55%); pointer-events: none; }
+    #downloads .section-label { color: var(--gold); }
+    #downloads .section-divider { background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+
+    .dl-intro { font-size: 0.88rem; color: var(--muted); line-height: 1.9; margin-bottom: 3rem; }
+    .dl-terms { margin-top: 2.8rem; padding-top: 1.6rem; border-top: 1px solid rgba(184,152,216,0.08); font-size: 0.66rem; color: rgba(128,112,168,0.44); letter-spacing: 0.06em; line-height: 1.9; text-align: center; }
+
+    .dl-category { margin-bottom: 3rem; }
+    .dl-category:last-child { margin-bottom: 0; }
+    .dl-category-title { font-family: 'Kiwi Maru', sans-serif; font-size: 0.92rem; font-weight: 500; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+    .dl-category-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(212,184,112,0.22), transparent); }
+
+    .dl-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; }
+
+    .dl-card { background: var(--card); border: 1px solid var(--bdr); border-radius: 20px; overflow: hidden; transition: border-color 0.42s, box-shadow 0.42s, transform 0.42s; }
+    .dl-card:hover { border-color: rgba(212,184,112,0.28); box-shadow: 0 0 22px rgba(212,184,112,0.07), 0 8px 24px rgba(0,0,0,0.28); transform: translateY(-4px); }
+
+    .dl-preview { aspect-ratio: 9/16; position: relative; overflow: hidden; background: linear-gradient(180deg, var(--bg2) 0%, var(--bg3) 100%); }
+    .dl-card.dl-icon .dl-preview { aspect-ratio: 1/1; }
+    .dl-preview-img { width: 100%; height: 100%; object-fit: cover; display: none; }
+    .dl-card.dl-available .dl-preview-img { display: block; }
+    .dl-coming-soon { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; }
+    .dl-card.dl-available .dl-coming-soon { display: none; }
+    .dl-cs-icon { font-size: 2rem; opacity: 0.22; }
+    .dl-cs-text { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); opacity: 0.5; }
+
+    .dl-info { padding: 0.9rem 1rem 1.1rem; }
+    .dl-char-name { font-family: 'Kiwi Maru', sans-serif; font-size: 0.82rem; display: block; margin-bottom: 0.65rem; letter-spacing: 0.06em; color: var(--text); }
+    .dl-btn { display: flex; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.48rem 0.8rem; border-radius: 12px; border: 1px solid rgba(212,184,112,0.2); background: transparent; color: var(--muted); font-size: 0.74rem; letter-spacing: 0.06em; text-decoration: none; transition: all 0.35s; opacity: 0.38; pointer-events: none; font-family: inherit; cursor: default; }
+    .dl-card.dl-available .dl-btn { opacity: 1; pointer-events: auto; color: var(--gold); border-color: rgba(212,184,112,0.3); background: rgba(212,184,112,0.05); cursor: pointer; }
+    .dl-card.dl-available .dl-btn:hover { background: rgba(212,184,112,0.12); }
+
     /* ════ LINKS ════ */
     #links { background-color: var(--bg); overflow: hidden; }
     #links::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 40% at 20% 80%, rgba(212,184,112,0.04) 0%, transparent 55%); pointer-events: none; }
@@ -377,6 +442,17 @@
     .link-icon { font-size: 1.6rem; line-height: 1; }
     .link-name { font-family: 'Kiwi Maru', sans-serif; font-size: 0.9rem; font-weight: 500; color: var(--gold); letter-spacing: 0.06em; }
     .link-desc { font-size: 0.74rem; color: var(--muted); letter-spacing: 0.04em; }
+
+    /* ════ BUSINESS CONTACT ════ */
+    .biz-contact { margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid rgba(184,152,216,0.1); }
+    .biz-contact-label { font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); opacity: 0.72; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.65rem; }
+    .biz-contact-label::before, .biz-contact-label::after { content: '✦'; font-size: 0.55em; opacity: 0.6; flex: none; }
+    .biz-contact-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; background: rgba(212,184,112,0.025); border: 1px solid rgba(212,184,112,0.18); border-radius: 22px; padding: 2rem 2.5rem; position: relative; overflow: hidden; }
+    .biz-contact-inner::before { content: ''; position: absolute; inset: 5px; border: 1px dashed rgba(212,184,112,0.08); border-radius: 18px; pointer-events: none; }
+    .biz-title { font-family: 'Kiwi Maru', sans-serif; font-size: 1.05rem; font-weight: 500; letter-spacing: 0.06em; color: var(--text); margin-bottom: 0.5rem; }
+    .biz-desc { font-size: 0.86rem; color: var(--muted); line-height: 1.82; max-width: 520px; }
+    .biz-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 2rem; border-radius: 18px; border: 1px solid rgba(212,184,112,0.42); background: rgba(212,184,112,0.07); color: var(--gold); text-decoration: none; font-size: 0.88rem; font-weight: 600; letter-spacing: 0.06em; transition: all 0.45s; white-space: nowrap; flex-shrink: 0; }
+    .biz-btn:hover { background: rgba(212,184,112,0.15); border-color: rgba(212,184,112,0.62); box-shadow: 0 0 26px rgba(212,184,112,0.13); transform: translateY(-2px); color: #e8cc70; }
 
     /* ════ FOOTER ════ */
     footer { background: var(--bg3); border-top: 1px solid rgba(184,152,216,0.09); padding: 3rem 1.5rem 2.5rem; text-align: center; }
@@ -663,6 +739,7 @@
       .sns-list { justify-content: center; }
       .tag-list { justify-content: center; }
       .link-grid { grid-template-columns: repeat(3,1fr); }
+      .biz-contact-inner { flex-direction: column; align-items: flex-start; padding: 1.5rem 1.4rem; gap: 1.4rem; }
     }
     @media (max-width: 768px) {
       .nav-links { display: none; }
@@ -671,12 +748,15 @@
       .yuruma-lore { padding: 1.6rem 1.2rem; }
       .hero-concept-wrap { aspect-ratio: 16/9; }
       .yuruma-concept-wrap { aspect-ratio: 16/9; }
+      .about-concept-wrap { aspect-ratio: 16/9; }
+      .about-origin { padding: 1.6rem 1.2rem; }
       .hero-moon { width: 90px; height: 90px; right: 4%; top: 10%; }
       .link-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 480px) {
       .section { padding: 4rem 1rem 5rem; }
       .link-grid { grid-template-columns: 1fr; }
+      .dl-grid { grid-template-columns: 1fr; max-width: 240px; margin: 0 auto; }
       .news-item { flex-wrap: wrap; gap: 0.5rem; }
     }
   </style>
@@ -695,8 +775,9 @@
     <a href="#home" class="nav-logo">Cryptid Moon<span class="nav-rabbit" aria-hidden="true">🐰</span></a>
     <ul class="nav-links">
       <li><a href="#home">Home</a></li>
-      <li><a href="#liver">朧月凌</a></li>
       <li><a href="#yuruma">ゆるま</a></li>
+      <li><a href="#characters">キャラクター</a></li>
+      <li><a href="#liver">About</a></li>
       <li><a href="#news">お知らせ</a></li>
       <li><a href="#links">リンク</a></li>
     </ul>
@@ -705,20 +786,21 @@
     </button>
   </nav>
   <div class="nav-mobile" id="navMobile">
-    <a href="#home"   onclick="closeMenu()">Home</a>
-    <a href="#liver"  onclick="closeMenu()">朧月凌</a>
-    <a href="#yuruma" onclick="closeMenu()">ゆるま</a>
-    <a href="#news"   onclick="closeMenu()">お知らせ</a>
-    <a href="#links"  onclick="closeMenu()">リンク</a>
+    <a href="#home"       onclick="closeMenu()">Home</a>
+    <a href="#yuruma"     onclick="closeMenu()">ゆるま</a>
+    <a href="#characters" onclick="closeMenu()">キャラクター</a>
+    <a href="#liver"      onclick="closeMenu()">About</a>
+    <a href="#news"       onclick="closeMenu()">お知らせ</a>
+    <a href="#links"      onclick="closeMenu()">リンク</a>
   </div>
 
   <!-- ══ HERO ══ -->
   <section id="home">
     <div class="hero-moon" aria-hidden="true"></div>
     <div class="float-layer" aria-hidden="true">
-      <span class="fd" style="--x:8%;  --y:22%; --sz:1.3rem; --dur:9s;  --dl:0s;   --op:.16; --ty:-18px; --r0:-4deg; --r1: 7deg">🦇</span>
-      <span class="fd" style="--x:88%; --y:18%; --sz:0.9rem; --dur:11s; --dl:1.8s; --op:.13; --ty:-14px; --r0: 4deg; --r1:-7deg">🦇</span>
-      <span class="fd" style="--x:78%; --y:72%; --sz:0.8rem; --dur:10s; --dl:3s;   --op:.11; --ty:-11px; --r0: 0deg; --r1: 8deg">🦇</span>
+      <span class="fd" style="--x:8%;  --y:22%; --sz:1.3rem; --dur:9s;  --dl:0s;   --op:.16; --ty:-18px; --r0:-4deg; --r1: 7deg">🐍</span>
+      <span class="fd" style="--x:88%; --y:18%; --sz:0.9rem; --dur:11s; --dl:1.8s; --op:.13; --ty:-14px; --r0: 4deg; --r1:-7deg">🌿</span>
+      <span class="fd" style="--x:78%; --y:72%; --sz:0.8rem; --dur:10s; --dl:3s;   --op:.11; --ty:-11px; --r0: 0deg; --r1: 8deg">👾</span>
       <span class="fd" style="--x:18%; --y:68%; --sz:1.0rem; --dur:12s; --dl:1s;   --op:.16; --ty:-16px; --r0:-7deg; --r1: 4deg">✦</span>
       <span class="fd" style="--x:55%; --y:12%; --sz:0.8rem; --dur:10s; --dl:4s;   --op:.13; --ty:-13px; --r0: 0deg; --r1:11deg">✦</span>
       <span class="fd" style="--x:92%; --y:55%; --sz:0.7rem; --dur:9s;  --dl:2.5s; --op:.11; --ty:-9px;  --r0: 8deg; --r1:-4deg">★</span>
@@ -734,22 +816,126 @@
       <div class="sp" style="--x:62%;--y:88%;--sz:6px; --dur:5.2s;--dl:2.5s;--c:#8aa06a"></div>
     </div>
 
-    <p class="hero-eyebrow">朧月凌 × ゆるま &nbsp;|&nbsp; Official Site</p>
+    <p class="hero-eyebrow">ゆるいUMAシリーズ &nbsp;|&nbsp; Cryptid Moon Official Site</p>
     <div class="hero-title-wrap">
       <img class="htl-img" src="images/title-logo.png" alt="Cryptid Moon" onerror="this.classList.add('stl-hidden')" />
       <h1 class="hero-title htl-fallback">Cryptid Moon</h1>
     </div>
-    <p class="hero-subtitle">オカルト大好きヴァンパイアVライバー &nbsp;<span>×</span>&nbsp; ゆるふわUMAシリーズ</p>
+    <p class="hero-subtitle">地球にやってきたゆるいUMAが、<span>あなたの心にそっと寄り添う</span>。</p>
     <div class="hero-concept-wrap">
-      <img class="hero-concept-img" src="images/hero-concept.png" alt="コンセプトアート" onerror="placeholderConcept(this,'hero')" />
+      <img class="hero-concept-img" src="images/yuruma-concept.png" alt="ゆるまコンセプトアート" onerror="placeholderConcept(this,'yuruma')" />
     </div>
     <div class="hero-badges">
-      <span class="badge badge-purple">🦇 ヴァンパイア</span>
-      <span class="badge badge-pink">🔮 オカルト</span>
-      <span class="badge badge-cyan">📡 IRIAM配信中</span>
+      <span class="badge badge-purple">🐍 UMA</span>
+      <span class="badge badge-pink">🌙 ゆるふわ</span>
+      <span class="badge badge-cyan">🌍 世界各地</span>
     </div>
     <div class="hero-scroll">
       <div class="scroll-hint"><span>SCROLL</span><div class="scroll-arrow"></div></div>
+    </div>
+  </section>
+
+  <!-- ══ YURUMA ══ -->
+  <section id="yuruma" class="section">
+    <div class="section-inner">
+      <div class="section-head reveal">
+        <p class="section-label">Original Work</p>
+        <div class="section-title-logo">
+          <img class="stl-img" src="images/yuruma-logo.png" alt="ゆるま" onerror="this.classList.add('stl-hidden')" />
+          <h2 class="section-title stl-fallback">ゆるま</h2>
+        </div>
+        <div class="section-divider"></div>
+      </div>
+      <div class="yuruma-ornament reveal" aria-hidden="true">
+        <div class="yuruma-ornament-inner">🐍 ✦ 💜 ✦ 🦌</div>
+      </div>
+      <div class="yuruma-lore reveal">
+        <p class="lore-catch">謎の生き物たちは、いつだってあなたのすぐそばにいる。</p>
+        <p>ツチノコ、チュパカブラ、ジャッカロープ——<br>世界各地で目撃され、謎のまま語り継がれてきた未確認生物（UMA）たち。<br>捕まえようとすれば消えてしまう。でも「どこかにいる」という確信だけが残る。<br>彼らは実は、ゆる〜い顔をしてあなたのすぐそばに漂っているのかもしれない。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CHARACTERS ══ -->
+  <section id="characters" class="section">
+    <div class="section-inner">
+      <div class="section-head reveal">
+        <p class="section-label">Characters</p>
+        <h2 class="section-title">キャラクター紹介</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="chara-grid">
+
+        <!-- ツチノコ -->
+        <div class="chara-card tsuchinoko reveal reveal-d1">
+          <span class="cc-tl" aria-hidden="true"></span><span class="cc-tr" aria-hidden="true"></span>
+          <span class="cc-bl" aria-hidden="true"></span><span class="cc-br" aria-hidden="true"></span>
+          <div class="chara-portrait">
+            <div class="chara-portrait-stars" aria-hidden="true"></div>
+            <div class="chara-tarot-num" aria-hidden="true">Ⅰ</div>
+            <img class="chara-tarot-img" src="images/tarot-tsuchinoko.png" alt="" aria-hidden="true"
+                 onload="this.closest('.chara-portrait').classList.add('has-tarot')"
+                 onerror="this.remove()" />
+            <div class="chara-icon"><div class="chara-icon-inner">
+              <img class="char-icon-img" src="images/tsuchinoko-icon.png" alt="ツチノコ" onerror="placeholderIcon(this,'ツチノコ','#7a9a5c')" />
+            </div></div>
+          </div>
+          <div class="chara-body">
+            <div class="chara-name">ツチノコ</div>
+            <div class="chara-species">日本 / 謎の胴長生物</div>
+            <div class="chara-divider"></div>
+            <p class="chara-desc">ずんぐりもちもち謎生物。基本動きたくない</p>
+            <a href="yuruma/tsuchinoko.html" class="chara-detail-btn">詳細を見る →</a>
+          </div>
+        </div>
+
+        <!-- チュパカブラ -->
+        <div class="chara-card chupacabra reveal reveal-d2">
+          <span class="cc-tl" aria-hidden="true"></span><span class="cc-tr" aria-hidden="true"></span>
+          <span class="cc-bl" aria-hidden="true"></span><span class="cc-br" aria-hidden="true"></span>
+          <div class="chara-portrait">
+            <div class="chara-portrait-stars" aria-hidden="true"></div>
+            <div class="chara-tarot-num" aria-hidden="true">Ⅱ</div>
+            <img class="chara-tarot-img" src="images/tarot-chupacabra.png" alt="" aria-hidden="true"
+                 onload="this.closest('.chara-portrait').classList.add('has-tarot')"
+                 onerror="this.remove()" />
+            <div class="chara-icon"><div class="chara-icon-inner">
+              <img class="char-icon-img" src="images/chupacabra-icon.png" alt="チュパカブラ" onerror="placeholderIcon(this,'チュパカブラ','#8a6aaa')" />
+            </div></div>
+          </div>
+          <div class="chara-body">
+            <div class="chara-name">チュパカブラ</div>
+            <div class="chara-species">ラテンアメリカ / 謎の吸血生物</div>
+            <div class="chara-divider"></div>
+            <p class="chara-desc">見た目がちょっとこわいけど寂しがり屋。ツンデレ</p>
+            <a href="yuruma/chupacabra.html" class="chara-detail-btn">詳細を見る →</a>
+          </div>
+        </div>
+
+        <!-- ジャッカロープ -->
+        <div class="chara-card jackalope reveal reveal-d3">
+          <span class="cc-tl" aria-hidden="true"></span><span class="cc-tr" aria-hidden="true"></span>
+          <span class="cc-bl" aria-hidden="true"></span><span class="cc-br" aria-hidden="true"></span>
+          <div class="chara-portrait">
+            <div class="chara-portrait-stars" aria-hidden="true"></div>
+            <div class="chara-tarot-num" aria-hidden="true">Ⅲ</div>
+            <img class="chara-tarot-img" src="images/tarot-jackalope.png" alt="" aria-hidden="true"
+                 onload="this.closest('.chara-portrait').classList.add('has-tarot')"
+                 onerror="this.remove()" />
+            <div class="chara-icon"><div class="chara-icon-inner">
+              <img class="char-icon-img" src="images/jackalope-icon.png" alt="ジャッカロープ" onerror="placeholderIcon(this,'ジャッカロープ','#b8902a')" />
+            </div></div>
+          </div>
+          <div class="chara-body">
+            <div class="chara-name">ジャッカロープ</div>
+            <div class="chara-species">北米 / 角を持つ謎のウサギ</div>
+            <div class="chara-divider"></div>
+            <p class="chara-desc">ツノを自慢してくるお調子者のムードメーカー</p>
+            <a href="yuruma/jackalope.html" class="chara-detail-btn">詳細を見る →</a>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 
@@ -760,16 +946,25 @@
     </svg>
   </div>
 
-  <!-- ══ LIVER ══ -->
+  <!-- ══ ABOUT / 朧月凌 ══ -->
   <section id="liver" class="section">
     <div class="section-inner">
       <div class="section-head reveal">
-        <p class="section-label">Vライバー紹介</p>
+        <p class="section-label">Discoverer</p>
         <div class="section-title-logo">
           <img class="stl-img" src="images/liver-title.png" alt="朧月凌" onerror="this.classList.add('stl-hidden')" />
           <h2 class="section-title stl-fallback">朧月 凌</h2>
         </div>
         <div class="section-divider"></div>
+      </div>
+      <div class="about-visual reveal">
+        <div class="about-concept-wrap">
+          <img class="about-concept-img" src="images/hero-concept.png" alt="朧月凌とゆるまの世界" onerror="placeholderConcept(this,'hero')" />
+        </div>
+      </div>
+      <div class="about-origin reveal">
+        <p class="about-origin-catch">都市伝説を追いかけていた凌が、ある夜遭遇したのがゆるまだった。</p>
+        <p>ライブナウV所属のVライバー・朧月凌。オカルト・都市伝説・夜の世界を深く愛する彼女が、世界各地のUMA記録を調べていたある夜のこと——気がつけば、そこにゆるまがいた。<br>彼女は現在も配信を通じて、ゆるまたちとの日常をゆるやかに記録しつづけている。</p>
       </div>
       <div class="liver-showcase">
         <div class="liver-art-container reveal">
@@ -816,152 +1011,14 @@
           </div>
           <p class="sns-app-notice">
             IRIAMはアプリでご視聴ください：
-            <a class="sns-app-link" href="https://apps.apple.com/jp/app/iriam/id1441049743" target="_blank" rel="noopener noreferrer">App Store</a>
+            <a class="sns-app-link" href="https://apps.apple.com/jp/app/iriam-vライブコミュニケーションアプリ/id1358057296" target="_blank" rel="noopener noreferrer">App Store</a>
             <span>/</span>
-            <a class="sns-app-link" href="https://play.google.com/store/apps/details?id=jp.co.iri.iriam" target="_blank" rel="noopener noreferrer">Google Play</a>
+            <a class="sns-app-link" href="https://play.google.com/store/search?q=iriam&c=apps&hl=ja" target="_blank" rel="noopener noreferrer">Google Play</a>
           </p>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- wave: bg2 → bg -->
-  <div class="wave-sep" style="background:var(--bg2)" aria-hidden="true">
-    <svg viewBox="0 0 1440 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,32 C240,0 480,64 720,32 C960,0 1200,64 1440,32 L1440,64 L0,64 Z" fill="#0f0c1e"/>
-    </svg>
-  </div>
-
-  <!-- ══ YURUMA ══ -->
-  <section id="yuruma" class="section">
-    <div class="section-inner">
-      <div class="section-head reveal">
-        <p class="section-label">Original Work</p>
-        <div class="section-title-logo">
-          <img class="stl-img" src="images/yuruma-logo.png" alt="ゆるま" onerror="this.classList.add('stl-hidden')" />
-          <h2 class="section-title stl-fallback">ゆるま</h2>
-        </div>
-        <div class="section-divider"></div>
-      </div>
-      <div class="yuruma-visual reveal">
-        <div class="yuruma-concept-wrap">
-          <img class="yuruma-concept-img" src="images/yuruma-concept.png" alt="ゆるまコンセプトアート" onerror="placeholderConcept(this,'yuruma')" />
-        </div>
-      </div>
-      <div class="yuruma-lore reveal">
-        <p class="lore-catch">地球にやってきたゆるいUMAが、<br>あなたの心にそっと寄り添う。</p>
-        <p>ツチノコ、チュパカブラ、ジャッカロープ——<br>世界各地で目撃され、謎のまま語り継がれてきた未確認生物（UMA）たち。<br>彼らは実は、ゆる〜い顔をしてあなたのすぐそばに漂っているのかもしれない。<br>朧月凌が手がける、ゆるふわUMAキャラクターシリーズ。</p>
-      </div>
-      <p class="chara-label reveal">Characters</p>
-      <div class="chara-grid">
-
-        <!-- ツチノコ -->
-        <div class="chara-card tsuchinoko reveal reveal-d1">
-          <span class="cc-tl" aria-hidden="true"></span><span class="cc-tr" aria-hidden="true"></span>
-          <span class="cc-bl" aria-hidden="true"></span><span class="cc-br" aria-hidden="true"></span>
-          <div class="chara-portrait">
-            <div class="chara-portrait-stars" aria-hidden="true"></div>
-            <div class="chara-tarot-num" aria-hidden="true">Ⅰ</div>
-            <img class="chara-tarot-img" src="images/tarot-tsuchinoko.png" alt="" aria-hidden="true"
-                 onload="this.closest('.chara-portrait').classList.add('has-tarot')"
-                 onerror="this.remove()" />
-            <div class="chara-icon"><div class="chara-icon-inner">
-              <img class="char-icon-img" src="images/tsuchinoko-icon.png" alt="ツチノコ" onerror="placeholderIcon(this,'ツチノコ','#7a9a5c')" />
-            </div></div>
-          </div>
-          <div class="chara-body">
-            <div class="chara-name">ツチノコ</div>
-            <div class="chara-species">日本 / 謎の胴長生物</div>
-            <div class="chara-divider"></div>
-            <p class="chara-desc">日本の山野に生息するとされる、ずんぐりもちもちの謎生物。日当たりのいい石の上でひなたぼっこをするのが日課。動くのが面倒なので、ほぼ転がって移動する。</p>
-            <div class="chara-traits">
-              <div class="chara-trait strength"><span class="chara-trait-label">得意なこと</span>じっとしていること・日光浴</div>
-              <div class="chara-trait weakness"><span class="chara-trait-label">苦手なこと</span>急かされること・動くこと</div>
-            </div>
-            <div class="chara-catchphrase">「…もうちょっとだけ、ここにいる」</div>
-            <div class="chara-tags">
-              <span class="chara-tag">🌿 ひなたぼっこ</span>
-              <span class="chara-tag">💤 昼寝</span>
-              <span class="chara-tag">🍙 食いしん坊</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- チュパカブラ -->
-        <div class="chara-card chupacabra reveal reveal-d2">
-          <span class="cc-tl" aria-hidden="true"></span><span class="cc-tr" aria-hidden="true"></span>
-          <span class="cc-bl" aria-hidden="true"></span><span class="cc-br" aria-hidden="true"></span>
-          <div class="chara-portrait">
-            <div class="chara-portrait-stars" aria-hidden="true"></div>
-            <div class="chara-tarot-num" aria-hidden="true">Ⅱ</div>
-            <img class="chara-tarot-img" src="images/tarot-chupacabra.png" alt="" aria-hidden="true"
-                 onload="this.closest('.chara-portrait').classList.add('has-tarot')"
-                 onerror="this.remove()" />
-            <div class="chara-icon"><div class="chara-icon-inner">
-              <img class="char-icon-img" src="images/chupacabra-icon.png" alt="チュパカブラ" onerror="placeholderIcon(this,'チュパカブラ','#8a6aaa')" />
-            </div></div>
-          </div>
-          <div class="chara-body">
-            <div class="chara-name">チュパカブラ</div>
-            <div class="chara-species">ラテンアメリカ / 謎の吸血生物</div>
-            <div class="chara-divider"></div>
-            <p class="chara-desc">見た目はちょっとこわいが、本当はさみしがりやでビビりな子。仲良くなると離れたがらない。「べつにそばにいたいとかじゃないし」が口癖。</p>
-            <div class="chara-traits">
-              <div class="chara-trait strength"><span class="chara-trait-label">得意なこと</span>気配を消すこと・夜の行動</div>
-              <div class="chara-trait weakness"><span class="chara-trait-label">苦手なこと</span>本音を言うこと・明るい場所</div>
-            </div>
-            <div class="chara-catchphrase">「…べつに、さみしくないし」</div>
-            <div class="chara-tags">
-              <span class="chara-tag">🌙 夜行性</span>
-              <span class="chara-tag">💜 さみしがり</span>
-              <span class="chara-tag">👀 誤解されがち</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- ジャッカロープ -->
-        <div class="chara-card jackalope reveal reveal-d3">
-          <span class="cc-tl" aria-hidden="true"></span><span class="cc-tr" aria-hidden="true"></span>
-          <span class="cc-bl" aria-hidden="true"></span><span class="cc-br" aria-hidden="true"></span>
-          <div class="chara-portrait">
-            <div class="chara-portrait-stars" aria-hidden="true"></div>
-            <div class="chara-tarot-num" aria-hidden="true">Ⅲ</div>
-            <img class="chara-tarot-img" src="images/tarot-jackalope.png" alt="" aria-hidden="true"
-                 onload="this.closest('.chara-portrait').classList.add('has-tarot')"
-                 onerror="this.remove()" />
-            <div class="chara-icon"><div class="chara-icon-inner">
-              <img class="char-icon-img" src="images/jackalope-icon.png" alt="ジャッカロープ" onerror="placeholderIcon(this,'ジャッカロープ','#b8902a')" />
-            </div></div>
-          </div>
-          <div class="chara-body">
-            <div class="chara-name">ジャッカロープ</div>
-            <div class="chara-species">北米 / 角を持つ謎のウサギ</div>
-            <div class="chara-divider"></div>
-            <p class="chara-desc">ウサギにレイヨウのツノが生えた、北米の荒野に伝わる謎の生き物。自分のツノをめちゃくちゃ自慢している女の子。ちょっとお調子者だが、面倒見がよくてみんなのムードメーカー。</p>
-            <div class="chara-traits">
-              <div class="chara-trait strength"><span class="chara-trait-label">得意なこと</span>全力疾走・ムードを上げること</div>
-              <div class="chara-trait weakness"><span class="chara-trait-label">苦手なこと</span>じっとすること・負けを認めること</div>
-            </div>
-            <div class="chara-catchphrase">「このツノ、かっこいいでしょ？」</div>
-            <div class="chara-tags">
-              <span class="chara-tag">🦌 ツノ自慢</span>
-              <span class="chara-tag">⚡ すばしっこい</span>
-              <span class="chara-tag">😄 お調子者</span>
-              <span class="chara-tag">👧 女の子</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- wave: bg → bg2 -->
-  <div class="wave-sep" style="background:var(--bg)" aria-hidden="true">
-    <svg viewBox="0 0 1440 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,32 C240,64 480,0 720,32 C960,64 1200,0 1440,32 L1440,64 L0,64 Z" fill="#140e28"/>
-    </svg>
-  </div>
 
   <!-- ══ NEWS ══ -->
   <section id="news" class="section">
@@ -969,6 +1026,7 @@
       <div class="section-head reveal">
         <p class="section-label">最新情報</p>
         <h2 class="section-title">News <span class="title-amp">&amp;</span> Schedule</h2>
+        <p class="news-lead">凌が記録する、目撃ログ。</p>
         <div class="section-divider"></div>
       </div>
       <div class="news-tabs reveal">
@@ -1027,6 +1085,125 @@
     </svg>
   </div>
 
+  <!-- ══ DOWNLOADS ══ -->
+  <section id="downloads" class="section">
+    <div class="section-inner">
+      <div class="section-head reveal">
+        <p class="section-label">Fan Downloads</p>
+        <h2 class="section-title">ダウンロード <span class="title-amp">&amp;</span> 素材</h2>
+        <div class="section-divider"></div>
+      </div>
+      <p class="dl-intro reveal">ゆるまのスマホ壁紙・SNSアイコンを無料で配布しています。<br>画像が準備でき次第、順次公開予定です。</p>
+
+      <!-- スマホ壁紙 -->
+      <div class="dl-category reveal">
+        <h3 class="dl-category-title">📱 スマホ壁紙</h3>
+        <div class="dl-grid">
+          <div class="dl-card">
+            <div class="dl-preview">
+              <img class="dl-preview-img" src="downloads/wallpaper-tsuchinoko.png" alt="ツチノコ スマホ壁紙"
+                   onload="this.closest('.dl-card').classList.add('dl-available')"
+                   onerror="this.closest('.dl-card').classList.add('dl-unavailable')" />
+              <div class="dl-coming-soon">
+                <span class="dl-cs-icon">🐍</span>
+                <span class="dl-cs-text">Coming Soon</span>
+              </div>
+            </div>
+            <div class="dl-info">
+              <span class="dl-char-name">ツチノコ</span>
+              <a class="dl-btn" href="downloads/wallpaper-tsuchinoko.png" download="wallpaper-tsuchinoko.png">↓ ダウンロード</a>
+            </div>
+          </div>
+          <div class="dl-card">
+            <div class="dl-preview">
+              <img class="dl-preview-img" src="downloads/wallpaper-chupacabra.png" alt="チュパカブラ スマホ壁紙"
+                   onload="this.closest('.dl-card').classList.add('dl-available')"
+                   onerror="this.closest('.dl-card').classList.add('dl-unavailable')" />
+              <div class="dl-coming-soon">
+                <span class="dl-cs-icon">💜</span>
+                <span class="dl-cs-text">Coming Soon</span>
+              </div>
+            </div>
+            <div class="dl-info">
+              <span class="dl-char-name">チュパカブラ</span>
+              <a class="dl-btn" href="downloads/wallpaper-chupacabra.png" download="wallpaper-chupacabra.png">↓ ダウンロード</a>
+            </div>
+          </div>
+          <div class="dl-card">
+            <div class="dl-preview">
+              <img class="dl-preview-img" src="downloads/wallpaper-jackalope.png" alt="ジャッカロープ スマホ壁紙"
+                   onload="this.closest('.dl-card').classList.add('dl-available')"
+                   onerror="this.closest('.dl-card').classList.add('dl-unavailable')" />
+              <div class="dl-coming-soon">
+                <span class="dl-cs-icon">🦌</span>
+                <span class="dl-cs-text">Coming Soon</span>
+              </div>
+            </div>
+            <div class="dl-info">
+              <span class="dl-char-name">ジャッカロープ</span>
+              <a class="dl-btn" href="downloads/wallpaper-jackalope.png" download="wallpaper-jackalope.png">↓ ダウンロード</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SNSアイコン -->
+      <div class="dl-category reveal reveal-d1">
+        <h3 class="dl-category-title">🖼️ SNSアイコン用</h3>
+        <div class="dl-grid">
+          <div class="dl-card dl-icon">
+            <div class="dl-preview">
+              <img class="dl-preview-img" src="downloads/icon-tsuchinoko.png" alt="ツチノコ SNSアイコン"
+                   onload="this.closest('.dl-card').classList.add('dl-available')"
+                   onerror="this.closest('.dl-card').classList.add('dl-unavailable')" />
+              <div class="dl-coming-soon">
+                <span class="dl-cs-icon">🐍</span>
+                <span class="dl-cs-text">Coming Soon</span>
+              </div>
+            </div>
+            <div class="dl-info">
+              <span class="dl-char-name">ツチノコ</span>
+              <a class="dl-btn" href="downloads/icon-tsuchinoko.png" download="icon-tsuchinoko.png">↓ ダウンロード</a>
+            </div>
+          </div>
+          <div class="dl-card dl-icon">
+            <div class="dl-preview">
+              <img class="dl-preview-img" src="downloads/icon-chupacabra.png" alt="チュパカブラ SNSアイコン"
+                   onload="this.closest('.dl-card').classList.add('dl-available')"
+                   onerror="this.closest('.dl-card').classList.add('dl-unavailable')" />
+              <div class="dl-coming-soon">
+                <span class="dl-cs-icon">💜</span>
+                <span class="dl-cs-text">Coming Soon</span>
+              </div>
+            </div>
+            <div class="dl-info">
+              <span class="dl-char-name">チュパカブラ</span>
+              <a class="dl-btn" href="downloads/icon-chupacabra.png" download="icon-chupacabra.png">↓ ダウンロード</a>
+            </div>
+          </div>
+          <div class="dl-card dl-icon">
+            <div class="dl-preview">
+              <img class="dl-preview-img" src="downloads/icon-jackalope.png" alt="ジャッカロープ SNSアイコン"
+                   onload="this.closest('.dl-card').classList.add('dl-available')"
+                   onerror="this.closest('.dl-card').classList.add('dl-unavailable')" />
+              <div class="dl-coming-soon">
+                <span class="dl-cs-icon">🦌</span>
+                <span class="dl-cs-text">Coming Soon</span>
+              </div>
+            </div>
+            <div class="dl-info">
+              <span class="dl-char-name">ジャッカロープ</span>
+              <a class="dl-btn" href="downloads/icon-jackalope.png" download="icon-jackalope.png">↓ ダウンロード</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="dl-terms reveal">素材はすべて © 2026 朧月 凌 / ライブナウV です。個人利用に限り無料でご使用いただけます。商用利用・二次配布はご遠慮ください。</p>
+
+    </div>
+  </section>
+
   <!-- ══ LINKS ══ -->
   <section id="links" class="section">
     <div class="section-inner">
@@ -1052,6 +1229,19 @@
           <span class="link-desc">準備中</span>
         </a>
       </div>
+
+      <div class="biz-contact reveal">
+        <div class="biz-contact-label">Business</div>
+        <div class="biz-contact-inner">
+          <div>
+            <div class="biz-title">コラボ・お仕事のご相談</div>
+            <p class="biz-desc">キャラクターコラボ、グッズ制作、イラスト依頼、メディア掲載など、<br>ゆるまに関するお仕事のご相談は下記よりご連絡ください。</p>
+          </div>
+          <a href="mailto:contact@example.com" class="biz-btn">
+            ✉&nbsp;&nbsp;お問い合わせ
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1073,9 +1263,10 @@
     </div>
     <img class="footer-sigil" src="images/sigil-mark.svg" alt="" aria-hidden="true" onerror="this.style.display='none'" />
     <div class="footer-logo">Cryptid Moon</div>
-    <p class="footer-sub">朧月凌 × ゆるま Official Site</p>
+    <p class="footer-sub">ゆるふわUMAシリーズ「ゆるま」 Official Site</p>
     <div class="footer-links">
       <a href="privacy.html">プライバシーポリシー</a>
+      <a href="mailto:contact@example.com">お仕事のご相談</a>
     </div>
     <p>© 2026 朧月 凌 / ライブナウV</p>
   </footer>
