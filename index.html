@@ -420,6 +420,8 @@
     .dl-coming-soon { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; }
     .dl-card.dl-available .dl-coming-soon { display: none; }
     .dl-cs-icon { font-size: 2rem; opacity: 0.22; }
+    .dl-cs-img { width: 2rem; height: 2rem; object-fit: cover; border-radius: 50%; opacity: 0.22; display: block; margin: 0 auto; }
+    .fd-img { width: var(--sz,1rem); height: var(--sz,1rem); object-fit: contain; display: block; }
     .dl-cs-text { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); opacity: 0.5; }
 
     .dl-info { padding: 0.9rem 1rem 1.1rem; }
@@ -884,14 +886,14 @@
   <section id="home">
     <div class="hero-moon" aria-hidden="true"></div>
     <div class="float-layer" aria-hidden="true">
-      <span class="fd" style="--x:8%;  --y:22%; --sz:1.3rem; --dur:9s;  --dl:0s;   --op:.16; --ty:-18px; --r0:-4deg; --r1: 7deg">🐍</span>
-      <span class="fd" style="--x:88%; --y:18%; --sz:0.9rem; --dur:11s; --dl:1.8s; --op:.13; --ty:-14px; --r0: 4deg; --r1:-7deg">🌿</span>
-      <span class="fd" style="--x:78%; --y:72%; --sz:0.8rem; --dur:10s; --dl:3s;   --op:.11; --ty:-11px; --r0: 0deg; --r1: 8deg">👾</span>
+      <span class="fd" style="--x:8%;  --y:22%; --sz:1.3rem; --dur:9s;  --dl:0s;   --op:.16; --ty:-18px; --r0:-4deg; --r1: 7deg"><img class="fd-img" src="images/float-tsuchinoko.png" alt="" onerror="this.parentElement.textContent='🐍'" /></span>
+      <span class="fd" style="--x:88%; --y:18%; --sz:0.9rem; --dur:11s; --dl:1.8s; --op:.13; --ty:-14px; --r0: 4deg; --r1:-7deg"><img class="fd-img" src="images/float-leaf.png" alt="" onerror="this.parentElement.textContent='🌿'" /></span>
+      <span class="fd" style="--x:78%; --y:72%; --sz:0.8rem; --dur:10s; --dl:3s;   --op:.11; --ty:-11px; --r0: 0deg; --r1: 8deg"><img class="fd-img" src="images/float-alien.png" alt="" onerror="this.parentElement.textContent='👾'" /></span>
       <span class="fd" style="--x:18%; --y:68%; --sz:1.0rem; --dur:12s; --dl:1s;   --op:.16; --ty:-16px; --r0:-7deg; --r1: 4deg">✦</span>
       <span class="fd" style="--x:55%; --y:12%; --sz:0.8rem; --dur:10s; --dl:4s;   --op:.13; --ty:-13px; --r0: 0deg; --r1:11deg">✦</span>
       <span class="fd" style="--x:92%; --y:55%; --sz:0.7rem; --dur:9s;  --dl:2.5s; --op:.11; --ty:-9px;  --r0: 8deg; --r1:-4deg">★</span>
       <span class="fd" style="--x:3%;  --y:48%; --sz:0.75rem;--dur:13s; --dl:3.5s; --op:.09; --ty:-14px; --r0:-2deg; --r1: 6deg">★</span>
-      <span class="fd" style="--x:46%; --y:82%; --sz:1.1rem; --dur:11s; --dl:6s;   --op:.12; --ty:-18px; --r0: 0deg; --r1: 4deg">🌙</span>
+      <span class="fd" style="--x:46%; --y:82%; --sz:1.1rem; --dur:11s; --dl:6s;   --op:.12; --ty:-18px; --r0: 0deg; --r1: 4deg"><img class="fd-img" src="images/float-moon.png" alt="" onerror="this.parentElement.textContent='🌙'" /></span>
     </div>
     <div class="sparkles" aria-hidden="true">
       <div class="sp" style="--x:15%;--y:35%;--sz:7px; --dur:5s;  --dl:0.4s;--c:#d4b870"></div>
@@ -1194,7 +1196,8 @@
                    onload="this.closest('.dl-card').classList.add('dl-available')"
                    onerror="this.closest('.dl-card').classList.add('dl-unavailable')" />
               <div class="dl-coming-soon">
-                <span class="dl-cs-icon">🐍</span>
+                <img class="dl-cs-img" src="images/tsuchinoko-icon.png" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display=''" />
+                <span class="dl-cs-icon" style="display:none">🐍</span>
                 <span class="dl-cs-text">Coming Soon</span>
               </div>
             </div>
@@ -1209,7 +1212,8 @@
                    onload="this.closest('.dl-card').classList.add('dl-available')"
                    onerror="this.closest('.dl-card').classList.add('dl-unavailable')" />
               <div class="dl-coming-soon">
-                <span class="dl-cs-icon">💜</span>
+                <img class="dl-cs-img" src="images/chupacabra-icon.png" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display=''" />
+                <span class="dl-cs-icon" style="display:none">💜</span>
                 <span class="dl-cs-text">Coming Soon</span>
               </div>
             </div>
@@ -1224,7 +1228,8 @@
                    onload="this.closest('.dl-card').classList.add('dl-available')"
                    onerror="this.closest('.dl-card').classList.add('dl-unavailable')" />
               <div class="dl-coming-soon">
-                <span class="dl-cs-icon">🦌</span>
+                <img class="dl-cs-img" src="images/jackalope-icon.png" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display=''" />
+                <span class="dl-cs-icon" style="display:none">🦌</span>
                 <span class="dl-cs-text">Coming Soon</span>
               </div>
             </div>
@@ -1246,7 +1251,8 @@
                    onload="this.closest('.dl-card').classList.add('dl-available')"
                    onerror="this.closest('.dl-card').classList.add('dl-unavailable')" />
               <div class="dl-coming-soon">
-                <span class="dl-cs-icon">🐍</span>
+                <img class="dl-cs-img" src="images/tsuchinoko-icon.png" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display=''" />
+                <span class="dl-cs-icon" style="display:none">🐍</span>
                 <span class="dl-cs-text">Coming Soon</span>
               </div>
             </div>
@@ -1261,7 +1267,8 @@
                    onload="this.closest('.dl-card').classList.add('dl-available')"
                    onerror="this.closest('.dl-card').classList.add('dl-unavailable')" />
               <div class="dl-coming-soon">
-                <span class="dl-cs-icon">💜</span>
+                <img class="dl-cs-img" src="images/chupacabra-icon.png" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display=''" />
+                <span class="dl-cs-icon" style="display:none">💜</span>
                 <span class="dl-cs-text">Coming Soon</span>
               </div>
             </div>
@@ -1276,7 +1283,8 @@
                    onload="this.closest('.dl-card').classList.add('dl-available')"
                    onerror="this.closest('.dl-card').classList.add('dl-unavailable')" />
               <div class="dl-coming-soon">
-                <span class="dl-cs-icon">🦌</span>
+                <img class="dl-cs-img" src="images/jackalope-icon.png" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display=''" />
+                <span class="dl-cs-icon" style="display:none">🦌</span>
                 <span class="dl-cs-text">Coming Soon</span>
               </div>
             </div>
