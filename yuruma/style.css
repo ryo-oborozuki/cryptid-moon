@@ -188,6 +188,8 @@ footer > p { font-size: 0.7rem; color: rgba(128,112,168,0.32); letter-spacing: 0
 }
 @media (max-width: 480px) {
   .chara-page { padding-left: 1rem; padding-right: 1rem; }
-  .nav-chara-links a { font-size: 0.72rem; padding: 0.2rem 0.5rem; }
+  .nav-home-link { display: none; }
+  .nav-chara-links { flex-wrap: nowrap; }
+  .nav-chara-links a { font-size: 0.7rem; padding: 0.2rem 0.45rem; }
   .chara-page-traits { grid-template-columns: 1fr; }
 }
