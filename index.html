@@ -759,6 +759,93 @@
       .dl-grid { grid-template-columns: 1fr; max-width: 240px; margin: 0 auto; }
       .news-item { flex-wrap: wrap; gap: 0.5rem; }
     }
+
+    /* ════ MOBILE CAROUSEL (≤768px) ════ */
+    @media (max-width: 768px) {
+      /* ── Dot indicators ── */
+      .carousel-dots { display: flex; justify-content: center; gap: 0.5rem; margin-top: 0.85rem; }
+      .carousel-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(184,152,216,0.25); transition: background 0.3s, transform 0.3s; flex-shrink: 0; }
+      .carousel-dot.active { background: var(--gold); transform: scale(1.28); }
+
+      /* ── Character carousel ── */
+      .chara-grid {
+        display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch; scrollbar-width: none;
+        gap: 0.75rem; padding: 0.25rem 0 0.75rem;
+        grid-template-columns: unset; align-items: unset;
+      }
+      .chara-grid::-webkit-scrollbar { display: none; }
+      .chara-grid .chara-card { flex: 0 0 calc(100% - 2.5rem); min-width: 0; scroll-snap-align: center; }
+
+      /* ── Download carousel ── */
+      .dl-grid {
+        display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch; scrollbar-width: none;
+        gap: 0.75rem; padding: 0.25rem 0 0.75rem;
+        grid-template-columns: unset; max-width: unset; margin: 0;
+      }
+      .dl-grid::-webkit-scrollbar { display: none; }
+      .dl-grid .dl-card { flex: 0 0 calc(100% - 2.5rem); min-width: 0; scroll-snap-align: center; }
+
+      /* ── News: hide decorative elements in carousel mode ── */
+      .news-stamp, .news-ufo-coords { display: none; }
+
+      /* ── News: carousel mode ── */
+      .news-board {
+        display: flex; flex-direction: row; overflow-x: auto;
+        scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; gap: 0.75rem; padding: 0.25rem 0 0.75rem;
+        border: none; border-radius: 0; background: none; position: static;
+      }
+      .news-board::-webkit-scrollbar { display: none; }
+      .news-board::after, .news-board::before { display: none; }
+      .news-board .news-item {
+        flex: 0 0 calc(100% - 2rem); min-width: 0; scroll-snap-align: center;
+        flex-direction: column; align-items: flex-start; flex-wrap: nowrap;
+        border: 1px solid rgba(184,152,216,0.14); border-bottom: 1px solid rgba(184,152,216,0.14);
+        border-radius: 18px; background: rgba(10,8,20,0.45); padding: 1rem 1.1rem; gap: 0.4rem;
+      }
+      .news-board .news-item.news-item-featured { flex-direction: column; align-items: flex-start; }
+      .news-featured-img { width: 100%; height: 110px; border-radius: 10px; margin-bottom: 0.4rem; flex-shrink: 0; }
+      .news-featured-content { width: 100%; }
+
+      /* ── News: list mode (すべて見る) ── */
+      .news-board.news-list-mode {
+        display: block; overflow-x: visible; padding: 0;
+        border-radius: 22px; border: 1px solid rgba(184,152,216,0.14);
+        background: rgba(10,8,20,0.45); position: relative;
+      }
+      .news-board.news-list-mode::after {
+        display: block; content: ''; position: absolute; inset: 5px;
+        border: 1px dashed rgba(184,152,216,0.07); border-radius: 18px; pointer-events: none;
+      }
+      .news-board.news-list-mode::before {
+        display: block; content: ''; position: absolute;
+        top: 0; bottom: 0; left: 19%; width: 1px;
+        border-left: 1px dashed rgba(212,184,112,0.055); pointer-events: none; z-index: 0;
+      }
+      .news-board.news-list-mode .news-item {
+        flex: unset; min-width: unset; scroll-snap-align: unset;
+        flex-direction: row; align-items: baseline; flex-wrap: wrap;
+        border: none; border-bottom: 1px solid rgba(184,152,216,0.07);
+        border-radius: 0; background: none; padding: 1.1rem 1.4rem;
+        display: flex !important; gap: 0.5rem;
+      }
+      .news-board.news-list-mode .news-item:last-child { border-bottom: none; }
+      .news-board.news-list-mode .news-item.news-item-featured { align-items: flex-start; flex-direction: row; }
+      .news-board.news-list-mode .news-featured-img { width: 78px; height: 58px; border-radius: 9px; margin-bottom: 0; }
+
+      /* ── News see-all button ── */
+      .news-see-all-wrap { text-align: center; margin-top: 1rem; }
+      .news-see-all-btn {
+        display: inline-flex; align-items: center; gap: 0.4rem;
+        padding: 0.5rem 1.6rem; border-radius: 14px;
+        border: 1px solid rgba(184,152,216,0.28); background: rgba(184,152,216,0.06);
+        color: var(--acc); font-size: 0.8rem; letter-spacing: 0.06em;
+        cursor: pointer; transition: all 0.35s; font-family: inherit;
+      }
+      .news-see-all-btn:hover { background: rgba(184,152,216,0.12); }
+    }
   </style>
 </head>
 <body>
@@ -1075,6 +1162,9 @@
           </div>
         </div>
       </div>
+      <div class="news-see-all-wrap" id="newsSeeAllWrap" style="display:none">
+        <button class="news-see-all-btn" id="newsSeeAll">すべて見る ↓</button>
+      </div>
     </div>
   </section>
 
@@ -1388,6 +1478,93 @@
         setTimeout(cycle, Math.random()*10000+18000);
       });
       mirrorImg.addEventListener('error', function(){ mirrorImg.remove(); });
+    })();
+
+    /* ─── モバイルカルーセル ─── */
+    (function(){
+      if(window.innerWidth > 768) return;
+
+      function makeDots(scrollEl, itemSel){
+        const wrap = document.createElement('div');
+        wrap.className = 'carousel-dots';
+        scrollEl.parentNode.insertBefore(wrap, scrollEl.nextSibling);
+
+        function getVis(){
+          return Array.from(scrollEl.querySelectorAll(itemSel))
+            .filter(el => el.style.display !== 'none' && getComputedStyle(el).display !== 'none');
+        }
+
+        function rebuild(){
+          const vis = getVis();
+          wrap.innerHTML = '';
+          if(vis.length < 2){ wrap.style.display = 'none'; return; }
+          wrap.style.display = '';
+          vis.forEach((_, i) => {
+            const d = document.createElement('span');
+            d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+            wrap.appendChild(d);
+          });
+        }
+
+        function update(){
+          if(scrollEl.classList.contains('news-list-mode')) return;
+          const vis = getVis();
+          const dots = wrap.querySelectorAll('.carousel-dot');
+          if(dots.length !== vis.length){ rebuild(); return; }
+          const sl = scrollEl.scrollLeft, cw = scrollEl.clientWidth;
+          let best = 0, bd = Infinity;
+          vis.forEach((el, i) => {
+            const d = Math.abs(el.offsetLeft + el.offsetWidth / 2 - sl - cw / 2);
+            if(d < bd){ bd = d; best = i; }
+          });
+          dots.forEach((d, i) => d.classList.toggle('active', i === best));
+        }
+
+        scrollEl.addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
+        rebuild();
+        return { rebuild, wrap };
+      }
+
+      /* キャラクターカルーセル */
+      const charaGrid = document.querySelector('.chara-grid');
+      if(charaGrid){
+        charaGrid.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+        makeDots(charaGrid, '.chara-card');
+      }
+
+      /* ダウンロードカルーセル */
+      document.querySelectorAll('.dl-grid').forEach(g => makeDots(g, '.dl-card'));
+
+      /* ニュースカルーセル */
+      const newsBoard = document.querySelector('.news-board');
+      const seeAllBtn = document.getElementById('newsSeeAll');
+      const seeAllWrap = document.getElementById('newsSeeAllWrap');
+      if(seeAllWrap) seeAllWrap.style.display = 'block';
+
+      if(newsBoard){
+        const newsDots = makeDots(newsBoard, '.news-item');
+
+        /* タブ切替後にドットを再構築 */
+        document.querySelectorAll('.news-tab').forEach(tab => {
+          tab.addEventListener('click', () => {
+            setTimeout(() => { if(newsDots) newsDots.rebuild(); }, 50);
+          });
+        });
+
+        if(seeAllBtn){
+          seeAllBtn.addEventListener('click', () => {
+            const expanded = newsBoard.classList.toggle('news-list-mode');
+            seeAllBtn.textContent = expanded ? '↑ 折りたたむ' : 'すべて見る ↓';
+            if(newsDots) newsDots.wrap.style.display = expanded ? 'none' : '';
+            if(expanded){
+              newsBoard.querySelectorAll('.news-item').forEach(item => { item.style.display = 'flex'; });
+            } else {
+              const activeTab = document.querySelector('.news-tab.active');
+              if(activeTab) activeTab.click();
+            }
+          });
+        }
+      }
     })();
 
     /* UFO イースターエッグ */
