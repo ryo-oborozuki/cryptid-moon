@@ -634,20 +634,20 @@
 
     /* ════ UFO STREAK EASTER EGG ════ */
     .ufo-streak {
-      position:absolute; height:2px; width:62px; border-radius:50%;
+      position:fixed; height:3px; width:90px; border-radius:50%;
       background:linear-gradient(90deg,transparent,#bcdeff 30%,#ffffff 65%,transparent);
-      pointer-events:none;
+      pointer-events:none; z-index:50;
     }
     @keyframes ufoFlyLTR {
       0%  { transform:translateX(0); opacity:0; }
-      7%  { opacity:0.82; }
-      93% { opacity:0.55; }
+      7%  { opacity:0.95; }
+      93% { opacity:0.65; }
       100%{ transform:translateX(110vw); opacity:0; }
     }
     @keyframes ufoFlyRTL {
       0%  { transform:translateX(0); opacity:0; }
-      7%  { opacity:0.82; }
-      93% { opacity:0.55; }
+      7%  { opacity:0.95; }
+      93% { opacity:0.65; }
       100%{ transform:translateX(-110vw); opacity:0; }
     }
 
@@ -1569,19 +1569,17 @@
     /* UFO イースターエッグ */
     (function(){
       function spawnUFO(){
-        const s=document.getElementById('stars');
-        if(!s) return;
         const ltr=Math.random()>0.5;
         const top=(Math.random()*55+5).toFixed(1);
-        const dur=(Math.random()*0.9+1.7).toFixed(1);
+        const dur=(Math.random()*1.0+2.0).toFixed(1);
         const el=document.createElement('div');
         el.className='ufo-streak';
-        el.style.cssText=`top:${top}%;${ltr?'left:-70px':'right:-70px'};animation:${ltr?'ufoFlyLTR':'ufoFlyRTL'} ${dur}s ease-in forwards;`;
-        s.appendChild(el);
+        el.style.cssText=`top:${top}%;${ltr?'left:-100px':'right:-100px'};animation:${ltr?'ufoFlyLTR':'ufoFlyRTL'} ${dur}s ease-in forwards;`;
+        document.body.appendChild(el);
         el.addEventListener('animationend',()=>el.remove(),{once:true});
-        setTimeout(spawnUFO, Math.random()*75000+30000);
+        setTimeout(spawnUFO, Math.random()*30000+20000);
       }
-      setTimeout(spawnUFO, Math.random()*22000+12000);
+      setTimeout(spawnUFO, Math.random()*10000+5000);
     })();
   </script>
 </body>
