@@ -365,8 +365,9 @@
     #characters .section-label { color: var(--gold); }
     #characters .section-divider { background: linear-gradient(90deg, transparent, var(--gold), transparent); }
 
-    .yuruma-ornament { text-align: center; margin-bottom: 2.8rem; }
+    .yuruma-ornament { text-align: center; margin-bottom: 2.8rem; position: relative; }
     .yuruma-ornament-inner { display: inline-flex; align-items: center; gap: 0.85rem; font-size: 1.45rem; opacity: 0.5; letter-spacing: 0.08em; }
+    .orn-icon { width: 1.5rem; height: 1.5rem; object-fit: contain; display: block; }
 
     .news-lead { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.1em; margin-top: 0.45rem; font-style: italic; opacity: 0.75; }
 
@@ -954,6 +955,12 @@
 
   <!-- ══ YURUMA ══ -->
   <section id="yuruma" class="section">
+    <div class="float-layer" aria-hidden="true">
+      <span class="fd" style="--x:6%;  --y:15%; --sz:1.6rem; --dur:10s; --dl:0s;   --op:.16; --ty:-16px; --r0:-5deg; --r1: 6deg"><img class="fd-img" src="images/float-tsuchinoko.png" alt="" onerror="this.parentElement.textContent='🐍'" /></span>
+      <span class="fd" style="--x:90%; --y:24%; --sz:1.4rem; --dur:11s; --dl:2.2s; --op:.14; --ty:-14px; --r0: 5deg; --r1:-6deg"><img class="fd-img" src="images/float-chupacabra.png" alt="" onerror="this.parentElement.textContent='💜'" /></span>
+      <span class="fd" style="--x:12%; --y:78%; --sz:1.5rem; --dur:12s; --dl:4s;   --op:.15; --ty:-15px; --r0: 0deg; --r1: 7deg"><img class="fd-img" src="images/float-jackalope.png" alt="" onerror="this.parentElement.textContent='🦌'" /></span>
+      <span class="fd" style="--x:80%; --y:70%; --sz:0.9rem; --dur:9s;  --dl:1.5s; --op:.13; --ty:-12px; --r0: 0deg; --r1:10deg">✦</span>
+    </div>
     <div class="section-inner">
       <div class="section-head reveal">
         <p class="section-label">Original Work</p>
@@ -964,7 +971,13 @@
         <div class="section-divider"></div>
       </div>
       <div class="yuruma-ornament reveal" aria-hidden="true">
-        <div class="yuruma-ornament-inner">🐍 ✦ 💜 ✦ 🦌</div>
+        <div class="yuruma-ornament-inner">
+          <img class="orn-icon" src="images/float-tsuchinoko.png" alt="" onerror="this.outerHTML='🐍'" />
+          <span>✦</span>
+          <img class="orn-icon" src="images/float-chupacabra.png" alt="" onerror="this.outerHTML='💜'" />
+          <span>✦</span>
+          <img class="orn-icon" src="images/float-jackalope.png" alt="" onerror="this.outerHTML='🦌'" />
+        </div>
       </div>
       <div class="yuruma-lore reveal">
         <p class="lore-catch">謎の生き物たちは、いつだってあなたのすぐそばにいる。</p>
