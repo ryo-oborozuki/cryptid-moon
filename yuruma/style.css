@@ -89,9 +89,9 @@ nav {
   border: 1px solid rgba(184,152,216,0.22);
   box-shadow: 0 0 0 1px rgba(184,152,216,0.05), 0 0 50px rgba(120,65,185,0.1), 0 12px 40px rgba(0,0,0,0.55);
   background: linear-gradient(180deg, #1a0e2e 0%, #0e0820 100%);
-  aspect-ratio: 3/4;
+  aspect-ratio: 11/21;
 }
-.chara-tarot-frame img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+.chara-tarot-frame img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .tarot-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 4.5rem; opacity: 0.28; }
 
 /* Corner marks on tarot */

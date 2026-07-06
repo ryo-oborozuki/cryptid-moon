@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ゆるま | Cryptid Moon Official Site</title>
+  <link rel="icon" type="image/png" href="images/rabbit-icon.png" />
   <meta name="description" content="地球にやってきたゆるいUMAが、あなたの心にそっと寄り添う。ツチノコ・チュパカブラ・ジャッカロープが主役のゆるふわUMAキャラクターシリーズ「ゆるま」公式サイト。" />
   <meta property="og:title" content="ゆるま | Cryptid Moon Official Site" />
   <meta property="og:description" content="地球にやってきたゆるいUMAが、あなたの心にそっと寄り添う。ゆるふわUMAキャラクターシリーズ「ゆるま」公式サイト。" />
@@ -679,17 +680,6 @@
       100%{ transform:translateX(-110vw); opacity:0; }
     }
 
-    /* ════ TAROT ART SLOTS ════ */
-    .chara-tarot-img {
-      position:absolute; inset:0; width:100%; height:100%;
-      object-fit:cover; object-position:top center;
-      border-radius:23px 23px 0 0; display:block; z-index:1;
-      opacity:0; transition:opacity 0.65s ease;
-    }
-    .chara-portrait.has-tarot .chara-tarot-img { opacity:1; }
-    .chara-portrait.has-tarot .chara-icon      { display:none; }
-    .chara-portrait.has-tarot .chara-portrait-stars { opacity:0; }
-
     /* ════ LIVER MIRROR CROSSFADE ════ */
     .liver-art-mirror-img {
       position:absolute; top:0; left:0; width:100%; height:auto;
@@ -996,9 +986,6 @@
           <div class="chara-portrait">
             <div class="chara-portrait-stars" aria-hidden="true"></div>
             <div class="chara-tarot-num" aria-hidden="true">Ⅰ</div>
-            <img class="chara-tarot-img" src="images/tarot-tsuchinoko.png" alt="" aria-hidden="true"
-                 onload="this.closest('.chara-portrait').classList.add('has-tarot')"
-                 onerror="this.remove()" />
             <div class="chara-icon"><div class="chara-icon-inner">
               <img class="char-icon-img" src="images/tsuchinoko-icon.png" alt="ツチノコ" onerror="placeholderIcon(this,'ツチノコ','#7a9a5c')" />
             </div></div>
@@ -1019,9 +1006,6 @@
           <div class="chara-portrait">
             <div class="chara-portrait-stars" aria-hidden="true"></div>
             <div class="chara-tarot-num" aria-hidden="true">Ⅱ</div>
-            <img class="chara-tarot-img" src="images/tarot-chupacabra.png" alt="" aria-hidden="true"
-                 onload="this.closest('.chara-portrait').classList.add('has-tarot')"
-                 onerror="this.remove()" />
             <div class="chara-icon"><div class="chara-icon-inner">
               <img class="char-icon-img" src="images/chupacabra-icon.png" alt="チュパカブラ" onerror="placeholderIcon(this,'チュパカブラ','#8a6aaa')" />
             </div></div>
@@ -1042,9 +1026,6 @@
           <div class="chara-portrait">
             <div class="chara-portrait-stars" aria-hidden="true"></div>
             <div class="chara-tarot-num" aria-hidden="true">Ⅲ</div>
-            <img class="chara-tarot-img" src="images/tarot-jackalope.png" alt="" aria-hidden="true"
-                 onload="this.closest('.chara-portrait').classList.add('has-tarot')"
-                 onerror="this.remove()" />
             <div class="chara-icon"><div class="chara-icon-inner">
               <img class="char-icon-img" src="images/jackalope-icon.png" alt="ジャッカロープ" onerror="placeholderIcon(this,'ジャッカロープ','#b8902a')" />
             </div></div>
